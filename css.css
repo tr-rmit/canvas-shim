@@ -1,0 +1,234 @@
+/* Canvas CSS Shim, by Trevor Reynolds
+   Use in conjunction with Canvas JS Shim
+   For use in "User Javascript and CSS" Browser addon / plugin 
+   Select "https://rmit.instructure.com/courses" to effect just course pages.
+*/
+
+/* Reduce oversized text (code) in pre elements */
+pre {
+  font-size: inherit !important;
+}
+
+body {
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center; 
+}
+
+#breadcrumbs,
+.header-bar {
+  background-color: rgba(0,0,0,0);
+}
+
+/* Transparent elements, no BG color set */
+div.entry-content {
+  background-color: white;
+}
+
+/* Allows content to grow on screens larger than 640 x 480 */
+#content-wrapper {
+  width:100%;
+  max-width:100%;
+}
+
+/* Allows Gradebook marks table to grow on screens larger than 640 x 480 */
+#gradebook_wrapper {
+	width:100%;
+}
+
+/* Allows main content area to grow on screens larger than 640 x 480 */
+#not_right_side {
+  max-width: calc(100% - 24px);  
+}
+body.gradebook #not_right_side {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Makes Course Navigation Area (CNA) fixed position elements */
+#left-side {
+  position: fixed;
+  overflow-x: hidden;
+  margin-left:0px;
+  padding-top:20px;
+  left: 80px;
+  top:25px;
+}
+
+/* Makes Secondary Items Area (SIA) area a fixed position drop dowm */
+#right-side-wrapper {
+  position: fixed;
+  overflow-y: hidden;
+  right: 0px;
+  top: 0px;
+  text-align: right;
+  width: 300px;
+  height: 56px;
+  background-color: #f6f5f6cc;
+  transition: height 0.5s;
+  border: 1px solid #c7cdd1;
+  border-radius: 20px 0px 0px 20px;
+  
+}
+#right-side-wrapper:hover {
+  height:100vh;
+}
+
+/* Reduces footprint of CNA and SIA links and makes them 'squarer' too */
+#left-side li.section a,
+#course_show_secondary a,
+#course_show_secondary button {
+  border-radius: 5px;
+  padding:4px 20px;
+  color: black;
+}
+
+#left-side li.section a.active {
+  color:white;
+}
+
+#left-side li.section a:hover {
+  color: white;
+  background-color: black;
+}
+
+/* Moves pop-down search to the left so that navigation is not covered */
+#discussion-toolbar .headerBar {
+  left: 180px;
+}
+
+/* Removes the "elipsed anyway so what's the point?" CNA course description */
+#section-tabs-header-subtitle {
+  visibility: hidden;
+}
+
+/* Makes room for browser search box in Speed Grader */
+.ic-no-flex-layout #main { 
+	margin-top: 35px;
+}
+
+/* Stops content collision in Speed Grader */
+#content #full_width_container {
+	top:6.5em;
+}
+
+/* Reduces uneccessary scroll bar in ... Speed Grader? */
+#left_side_inner {
+	height: calc(100% - 2px) !important;
+}
+
+/* Sets marking area to 90% in Speed Grader */
+#full_width_container #right_side {
+  width:90%;
+}
+
+/* Makes long descriptions visible, removes links to make them popup */
+.long_description_link {
+  display:none;
+}
+/* Part of above issue, disabled now that fields are not being used.
+.long_description {
+  display:block !important;
+  width:95%;
+  height: 1px;
+} */
+
+/* "Helpful" stuff that just gets in the way when working */
+.walkme-in-wrapper,
+.ui-widget-content .gradebook-tooltip {
+  display: none;
+}
+.ui-widget-overlay {
+  opacity:0.2;
+}
+/* 20180308: Renamed walkmein widget has stubborn !important styles that are applied dynamically... */
+#walkme-player {
+  clip:rect(0px,0px,0px,0px);;
+}
+/* Removes rubric "lightbox" background so markers can scroll the docuemnt when marking. */
+.ui-widget-overlay {
+  display: none;
+}
+
+/*** Make Discussions Board More Readable ***/
+
+/* All Discussion Entries Container */
+div#discussion_subentries {
+  padding:0px;
+  margin-top:20px;
+}
+
+/* All Discussion Entries List */
+div#discussion_subentries > ul.discussion-entries {
+  margin:0px;
+}
+
+/* Single Conversation and Replies Block */
+div#discussion_subentries > ul.discussion-entries > li.entry {
+  padding:15px 0px 0px 0px;
+  margin: 15px 0px 0px 0px;
+  border-top: 4px dotted #dc291e;
+}
+
+/* Starting Conversation */
+div#discussion_subentries > ul.discussion-entries > li.entry > article.discussion_entry > div.entry-content {
+  background-color:#F3F9FF;
+}
+
+/* Remove Border on Mid Nested Containers  */
+div#discussion_subentries li.entry {
+  border-width: 0px;
+}
+
+/* Single Reply Block in a Conversation */
+div#discussion_subentries article.discussion_entry {
+  border: 1px solid #CCC;
+  border-left-width:10px;
+  padding: 0px;
+  margin: 0px 0px 1px 0px;
+}
+
+/* Dynamic Style Override: Content Inside Single Reply Block */
+div#discussion_subentries article.discussion_entry div.entry-content {
+  padding-left:20px !important;
+}
+
+/* Replies Recursive Indentation */
+div#discussion_subentries ul {
+  margin: 0 0 0 10px;
+}
+
+/* Move Read / Unread Indicator into Reply Block */
+a.discussion-read-state-btn {
+  position: absolute;
+  left:0px;
+}
+
+/* Make Read / Unread Indicator more visible */
+div.discussion-read-state,
+.read div.discussion-read-state {
+  width: 30px;
+  height:30px;
+  top:-17px;
+  left:-13px;
+  border-radius: 0 0 30px 0;
+  border-color: #ccc;
+}
+
+/* Fuck off racing car flags! */
+div.discussions-v2__container-image {
+  display: none;
+}
+
+/* Numbers Rubric marking rows, destroys formatting but helps debug 
+table.rubric_table > tbody > tr {
+  display: list-item;
+  margin-left: 1.5em;
+  list-style-type: decimal;
+}
+*/
+
+/* Reduce width of Grade center columns - WIP
+.slick-column-name {
+  width:20px;
+} */
