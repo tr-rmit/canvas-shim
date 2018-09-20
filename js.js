@@ -7,7 +7,11 @@
 /* Get Course Shell number from url for individual styling. */
 var urlArray = window.location.pathname.split("/");
 var courseShell = urlArray[2];
-var isSpeedGrader = (urlArray[4].indexOf('speed_grader') === 0);
+
+/* Detect if page is speedgrader page. */
+var isSpeedGrader=false;
+if (urlArray[4])
+  isSpeedGrader = (urlArray[4].indexOf('speed_grader') === 0);
 
 /* Use courseShell to style each of your courses individually, for example the background, by adding a new case block */
 
@@ -31,6 +35,7 @@ switch (courseShell) {
    Magic Numbers: 25px and -40px work well now but this may change in the future. */
 window.onscroll = function() {
   var minTop = Math.max(-40,(25-window.pageYOffset))+"px";
+  //console.log(minTop);
   document.getElementById('left-side').style.top = minTop;
 }
 
