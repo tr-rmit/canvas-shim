@@ -9,9 +9,9 @@ var urlArray = window.location.pathname.split("/");
 var courseShell = urlArray[2];
 
 /* Detect if page is speedgrader page. */
-var isSpeedGrader=false;
-if (urlArray[4])
-  isSpeedGrader = (urlArray[4].indexOf('speed_grader') === 0);
+var isSpeedGrader = urlArray[4] ? 
+  urlArray[4].indexOf('speed_grader') === 0 :
+  false;
 
 /* Use courseShell to style each of your courses individually, for example the background, by adding a new case block */
 
