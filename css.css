@@ -235,7 +235,23 @@ div.discussions-v2__container-image {
   display: none;
 }
 
-/* Discussion font too big, layout whitespace issues ;-( 
+/* Count rows in grade center so we can see how many rows exist
+   GOTCHA: Canvas renumbers rows on scroll, only 25 are counted  
+div.canvas_0.grid-canvas {
+  counter-reset: section;
+}
+
+div.canvas_0.grid-canvas > div.ui-widget-content.slick-row > div:first-of-type::before {
+  counter-increment: section;
+  content: counter(section);
+  position: absolute;
+  right:3px;
+  z-index:10;
+}
+*/
+
+/* Discussion font too big, 
+   GOTCHA: Layout whitespace issues ;-( 
 div[class*='pinned-discussions'] {
   transform: scale(.8);
   transform-origin: 10% 10%;
@@ -243,14 +259,16 @@ div[class*='pinned-discussions'] {
   border:2px red solid;
 } */
 
-/* Numbers Rubric marking rows, destroys formatting but helps debug 
+/* Numbers Rubric marking rows, 
+   GOTCHA: Destroys formatting but helps debug 
 table.rubric_table > tbody > tr {
   display: list-item;
   margin-left: 1.5em;
   list-style-type: decimal;
 } */
 
-/* Reduce width of Grade center columns - WIP
+/* Reduce width of Grade center columns
+   Work In Progress
 .slick-column-name {
   width:20px;
 } */
