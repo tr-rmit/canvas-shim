@@ -230,9 +230,19 @@ div.discussion-read-state,
   border-color: #ccc;
 }
 
-/* Fuck off racing car flags! */
-div.discussions-v2__container-image {
-  display: none;
+/* Fuck off ...
+- racing car flags
+- rubric triangles */
+div.discussions-v2__container-image,
+.triangle {
+  display:none;
+}
+
+/* Rework rubric selected cells */
+.shader.nearMasteryShader,
+.react-rubric .rating-tier.selected .shader {
+  height: 20em !important;
+  background-color: #0994 !important;
 }
 
 /* Count rows in grade center so we can see how many rows exist
