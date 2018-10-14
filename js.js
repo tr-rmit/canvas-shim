@@ -31,12 +31,33 @@ switch (courseShell) {
     document.getElementById('not_right_side').style.backgroundColor = 'white';
 }
 
-/* Makes the course navigation "sticky"
-   Magic Numbers: 25px and -40px work well now but this may change in the future. */
 window.onscroll = function() {
+
+/* Makes the course navigation and unenrolled students "sticky"
+   Magic Numbers: 25px and -40px (nav) works well now but this may change in the future. */
+  var ls = document.getElementById('left-side');
+// wtf? There are two of them?  
+  var uas = document.getElementsByClassName('unassigned-students')[1]; 
   var minTop = Math.max(-40,(25-window.pageYOffset))+"px";
-  //console.log(minTop);
-  document.getElementById('left-side').style.top = minTop;
+  ls.style.top = minTop;
+  minTop = Math.max(0,(window.pageYOffset-270))+"px";
+  if (uas.style.position != 'relative')
+    uas.style.position = 'relative';
+  uas.style.top=minTop;
+
+// Remove brs to increase realestate in groups area
+  var tags = document.getElementsByClassName('show-group-full');
+  if (tags.length > 0) 
+    for(let i=0; i<tags.length; i++)
+      tags[i].parentNode.removeChild(tags[i]);
+      
+// Remove ellipses
+  tags = document.getElementsByClassName('ellipsis');
+  tagslen = tags.length;
+  if (!isNaN(tagslen) ) 
+    for(let i=0; i<tagslen; i++) {
+      tags[i].style.textOverflow='clip';
+    }
 }
 
 /* Inserts "Student View" link into course navigation */
@@ -47,9 +68,3 @@ if (document.getElementById('section-tabs')) {
 /* Allows discussion content to grow on screens larger than 640 x 480, removal of "stubborn" dynamically applied style */
 document.getElementById('not_right_side').classList.remove('ic-app-main-content');
 
-/* This was a nice idea to move rubric lines around but it doesn't work sadly 
-  $( function() {
-    $( "table.rubric_table tbody" ).sortable();
-    $( ".table.rubric_table tbody" ).disableSelection();
-  }); 
-  */
