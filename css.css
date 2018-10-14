@@ -224,7 +224,7 @@ div.discussion-read-state,
 .read div.discussion-read-state {
   width: 30px;
   height:30px;
-  top:-17px;
+  top:-17px; 
   left:-13px;
   border-radius: 0 0 30px 0;
   border-color: #ccc;
@@ -232,17 +232,19 @@ div.discussion-read-state,
 
 /* Fuck off ...
 - racing car flags
-- rubric triangles */
+- rubric triangles and 
+- rubric marked/selected cell bars */
 div.discussions-v2__container-image,
+div.shader.meetsMasteryShader,
+div.shader.nearMasteryShader,
+div.shader.wellBelowMasteryShader,
 .triangle {
   display:none;
 }
 
-/* Rework rubric selected cells */
-.shader.nearMasteryShader,
-.react-rubric .rating-tier.selected .shader {
-  height: 20em !important;
-  background-color: #0994 !important;
+/* Rework rubric selected/mastery cells */
+div.rating-tier.selected {
+  background-color:#0994;
 }
 
 /* Count rows in grade center so we can see how many rows exist
@@ -282,3 +284,26 @@ table.rubric_table > tbody > tr {
 .slick-column-name {
   width:20px;
 } */
+
+/* Tightenup up groups layout, release realestate */
+div.unassigned-students > div {
+  min-width:200px !important;
+}
+.ui-cnvs-scrollable {
+  height:calc(100vh - 70px) !important;
+}
+div.group-user-name.ellipsis {
+  text-overflow: clip;
+  max-width: calc(100% - 22px);
+}
+.group-user.ui-draggable {
+  max-width: 100%;
+  font-size: 9pt;
+  padding: 0px;
+  line-height: 25px;
+  margin-bottom:1px;
+}
+
+.collectionViewItems.groups-list li {
+  padding: 0.5em 0;
+}
