@@ -1,7 +1,9 @@
 /* Canvas CSS Shim, by Trevor Reynolds
    Use in conjunction with Canvas JS Shim
    For use in "User Javascript and CSS" Browser addon / plugin 
-   Select "https://rmit.instructure.com/courses" to effect just course pages.
+   Select "https://rmit.instructure.com/courses" to effect just course pages.  
+   
+   Latest Update: 20181021 - Rubric table de-squish
 */
 
 /* Reduce oversized text (code) in pre elements */
@@ -135,6 +137,27 @@ body.gradebook #not_right_side {
 /* Sets marking area to 90% in Speed Grader */
 #full_width_container #right_side {
   width:90%;
+}
+
+/* 20181021: Grade center table squashed, restoring full width and moving comment button */
+.react-rubric table {
+  table-layout: auto;
+}
+.react-rubric table tr th.rubric-criteria {
+  width:300px;
+}
+.react-rubric table tr th.rubric-points {
+  width:150px;
+}
+.react-rubric table tr td.criterion_points div:nth-child(2) {
+  height:0px;
+}
+.react-rubric table tr td.criterion_points button {
+  border: 1px #ccc solid;
+  position: relative;
+  bottom: 38px;
+  left: 70px;
+  background-color: #fffd;
 }
 
 /* Makes long descriptions visible, removes links to make them popup */
