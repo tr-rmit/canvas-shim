@@ -330,3 +330,23 @@ div.group-user-name.ellipsis {
 .collectionViewItems.groups-list li {
   padding: 0.5em 0;
 }
+
+/* Grade Center Beta Styles*/
+
+#gradebook-toolbar .gradebook-menus {
+  margin-left: 300px;
+}
+
+#search-filter-container {
+  position: absolute;
+  left:0px;
+}
+
+div.student-name {
+  font-size: 12px;
+}
+
+div.secondary-info {
+  font-size: 14px;
+  padding: 2px;
+}
