@@ -374,3 +374,7 @@ div.secondary-info {
   margin-right: 120px;
   font-weight: bolder;
 }
+
+.question input[type=text] {
+  width: calc(100% - 20px);
+}
