@@ -350,3 +350,27 @@ div.secondary-info {
   font-size: 14px;
   padding: 2px;
 }
+
+/* Quiz Styles */
+
+.answer_arrow.info {
+  background-color: #00ac18;
+  right: 5px;
+  left: auto !important;
+  border-radius: 5px;
+  color:white !important;
+  padding:0px 10px;
+}
+
+.answer_arrow.info,
+.answer_arrow.info::before,
+.answer_arrow.info::after
+{
+  background-size: 0px 0px;
+}
+
+.answer.correct_answer {
+  background-color:#e5ffe8;
+  margin-right: 120px;
+  font-weight: bolder;
+}
