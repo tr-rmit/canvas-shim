@@ -350,12 +350,14 @@ div.secondary-info {
   padding: 2px;
 }
 
-.ic-discussion-content-container > span > span:first-child {
-}
+/* Discussion titles crunch fix */
+
 .ic-discussion-content-container > span > span > span:first-child {
   flex: unset;
   width: calc(100% - 85px);
 }
+
 .ic-discussion-content-container > span > span > span:last-child {
   flex: unset;
+  width: initial;
 }
