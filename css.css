@@ -384,6 +384,6 @@ div.secondary-info {
   background-color:#e5ffe8;
 }
 
-.question input[type=text] {
+.answer input[type=text] {
   width: calc(100% - 150px);
 }
