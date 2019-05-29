@@ -354,12 +354,12 @@ div.secondary-info {
 
 .ic-discussion-content-container > span > span > span:first-child {
   flex: unset;
-  width: calc(100% - 145px);
+  width: calc(100% - 85px);
 }
 
 .ic-discussion-content-container > span > span > span:last-child {
   flex: unset;
-  width: 145px;
+  width: 85px;
 }
 
 /* Quiz Styles */
