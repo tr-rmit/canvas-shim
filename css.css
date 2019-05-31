@@ -362,6 +362,15 @@ div.secondary-info {
   width: 85px;
 }
 
+.discussion-availability.ic-item-row__content-col.ic-discussion-row__content {
+  width: 290px;
+  position: absolute;
+  left: 50px;
+  bottom: 0px;
+  font-size: 80%;
+  text-align: left;
+}
+
 /* Quiz Styles */
 
 .answer_arrow.info {
