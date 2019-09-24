@@ -329,6 +329,11 @@ table.rubric_table > tbody > tr {
 } */
 
 /* Tightenup up groups layout, release realestate */
+
+div.unassigned-students {
+	position: sticky;
+  top: 0px;
+}
 div.unassigned-students > div {
   min-width:200px !important;
 }
