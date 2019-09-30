@@ -37,14 +37,16 @@ window.onscroll = function() {
    Magic Numbers: 25px and -40px (nav) works well now but this may change in the future. */
   var ls = document.getElementById('left-side');
   
-// wtf? There are two of them?  	
-  var uas = document.getElementsByClassName('unassigned-students')[1]; 	
+// wtf? There are two of them? UPDATE: Array of tabs ...  	
+  var uas = document.getElementsByClassName('unassigned-students'); 	
   var minTop = Math.max(-40,(25-window.pageYOffset))+"px";	
   ls.style.top = minTop;	
   minTop = Math.max(0,(window.pageYOffset-220))+"px";	
-  if (uas.style.position != 'relative')	
-    uas.style.position = 'relative';	
-  uas.style.top=minTop;
+  for (ua in uas) {
+	  if (uas[ua].style.position != 'relative')	
+	    uas[ua].style.position = 'relative';	
+	  uas[ua].style.top=minTop; 	
+  }
 
 // Remove brs to increase realestate in groups area
   var tags = document.getElementsByClassName('show-group-full');
