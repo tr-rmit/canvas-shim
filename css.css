@@ -338,7 +338,7 @@ div.unassigned-students > div {
   min-width:200px !important;
 }
 .ui-cnvs-scrollable {
-  height:calc(100vh - 70px) !important;
+  height:calc(100vh - 110px) !important;
 }
 div.group-user-name.ellipsis {
   text-overflow: clip;
