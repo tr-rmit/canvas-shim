@@ -21,6 +21,14 @@ body {
   background-color: rgba(0,0,0,0);
 }
 
+/* 20191020: Nav links dopegrade fix */
+nav #section-tabs i.nav-icon.icon-off {
+  position: absolute;
+  right: 15px;
+  color: #ccc;
+  transform: scale(0.7);
+  
+}
 /* Transparent elements, no BG color set */
 div.entry-content {
   background-color: white;
@@ -95,17 +103,22 @@ body.gradebook #not_right_side {
 #course_show_secondary a,
 #course_show_secondary button {
   border-radius: 5px;
-  padding:4px 20px;
+  border: 1px #cccccc solid;
+  padding:3px 20px 2px;
+  margin: 1px;
   color: black;
+  background-color: white;
 }
 
 #left-side li.section a.active {
   color:white;
+  background-color: #e60e27;
 }
 
 #left-side li.section a:hover {
-  color: white;
-  background-color: black;
+  color: black;
+  background-color: #cccccc;
+  text-decoration: none;
 }
 
 /* Moves pop-down search to the left so that navigation is not covered */
@@ -329,11 +342,11 @@ table.rubric_table > tbody > tr {
 } */
 
 /* Tightenup up groups layout, release realestate */
-
-div.unassigned-students {
-	position: sticky;
-  top: 0px;
+div.unassigned-students {	
+  position: sticky;	
+  top: 0px;	
 }
+
 div.unassigned-students > div {
   min-width:200px !important;
 }
