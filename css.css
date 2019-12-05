@@ -389,6 +389,11 @@ div.secondary-info {
   padding: 2px;
 }
 
+/* remove non submissions from speed grader drop down menu */
+li.not_submitted.ui-selectmenu-hasIcon {
+  display: none;
+}
+
 /* Discussion titles crunch fix */
 
 .ic-discussion-content-container > span > span > span:first-child {
