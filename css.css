@@ -389,14 +389,28 @@ div.secondary-info {
   padding: 2px;
 }
 
+/* make speed grader drop down larger ... */
+#students_selectmenu-menu {
+  height: calc(100vh - 110px) !important;
+  max-height: initial !important;
+}
+/* ... and tighten up padding inside */
+#students_selectmenu-menu li.ui-selectmenu-hasIcon {
+  padding: 0px;
+}
 /* remove non submissions from speed grader drop down menu */
 li.not_submitted.ui-selectmenu-hasIcon {
   display: none;
 }
-/* tighten up padding */
-#students_selectmenu-menu li.ui-selectmenu-hasIcon {
-  padding: 0px;
+/* make marked students smaller and right shifted */
+li.graded.ui-selectmenu-hasIcon {
+  transform: 
+    scale(0.66)
+    translateX(35px);
+  transform-origin: 0px 50%;
+  width:150%;
 }
+
 
 /* Discussion titles crunch fix */
 
