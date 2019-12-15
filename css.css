@@ -64,38 +64,35 @@ body.gradebook #not_right_side {
   top:25px;
 }
 
-/* Makes Secondary Items Area (SIA) area a fixed position drop down. Z-index hover change not working, does not rise above header */
+/* Makes Secondary Items Area (SIA) area a fixed position top right corner, expand on hover. Header needs a z-index fix to work */
 #header {
   z-index:0;
 }
 #not_right_side #right-side-wrapper {
+  box-sizing: border-box;
   position: fixed;
   z-index: 12 !important;
   overflow-y: hidden;
   padding:2px;
-  bottom: 0px;
-  left: 50px;
-  text-align: right;
-  width: 180px;
+  top: 0px;
+  right: 0px;
+  text-align: left;
+  width: 95px;
   height: 40px;
-  background-color: #f6f5f666;
-  transition: all 0.5s;
-  border: 2px solid #51d2ff;
-  border-width: 2px 2px 0 2px;
-  border-radius: 10px 10px 0px 0px;
-  
+  background-color: #51d2ff38;
+  transition: all 0.4s;
+  border-color: #51d2ff;
+  border-width: 0px 0px 4px 4px;
+  border-radius: 0px 0px 0px 10px;
+  border-style: ridge groove groove ridge;
 }
 #not_right_side #right-side-wrapper:hover {
-  position:fixed;
-  z-index: 12;
-  padding:10px;
-  left: 0px;
   height:100vh;
+  background-color: #f6f5f666;
   overflow-y: auto;
   width: 280px;
-  background-color: #f6f5f6EE;
-  border-width: 0px 2px 0px 0px;
-  border-radius: 0px 10px 10px 0px;
+  border-width: 0px 0px 0px 4px;
+  border-radius: 0px;
 }
 
 /* Reduces footprint of CNA and SIA links and makes them 'squarer' too */
@@ -289,11 +286,14 @@ div.discussion-read-state,
 /* Please go away ...
 - racing car flags
 - rubric triangles and 
-- rubric marked/selected cell bars */
+- rubric marked/selected cell bars 
+- helpful notices that take up room */
 div.discussions-v2__container-image,
 div.shader.meetsMasteryShader,
 div.shader.nearMasteryShader,
 div.shader.wellBelowMasteryShader,
+div#replacement_notice_mount_point,
+div.customFlash.ic-flash-warning.undefined,
 .triangle {
   display:none;
 }
