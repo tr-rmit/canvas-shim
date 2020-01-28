@@ -201,11 +201,6 @@ div.Grid__GradeCell__Options {
   height: 1px;
 } */
 
-/* "Helpful" stuff that just gets in the way when working */
-.walkme-in-wrapper,
-.ui-widget-content .gradebook-tooltip {
-  display: none;
-}
 .ui-widget-overlay {
   opacity:0.2;
 }
@@ -287,13 +282,16 @@ div.discussion-read-state,
 - racing car flags
 - rubric triangles and 
 - rubric marked/selected cell bars 
-- helpful notices that take up room */
+- other helpful stuffs that take up room or gets in the way */
+.walkme-in-wrapper,
+.ui-widget-content .gradebook-tooltip,
 div.discussions-v2__container-image,
 div.shader.meetsMasteryShader,
 div.shader.nearMasteryShader,
 div.shader.wellBelowMasteryShader,
 div#replacement_notice_mount_point,
 div.customFlash.ic-flash-warning.undefined,
+#content div.prompt-banner.CES_SP4_2019,
 .triangle {
   display:none;
 }
