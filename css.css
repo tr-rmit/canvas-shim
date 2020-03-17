@@ -2,7 +2,6 @@
    Use in conjunction with Canvas JS Shim
    For use in "User Javascript and CSS" Browser addon / plugin 
    Select "https://rmit.instructure.com/courses" to effect just course pages.  
-
 */
 
 /* Reduce oversized text (code) in pre elements */
@@ -201,6 +200,11 @@ div.Grid__GradeCell__Options {
   height: 1px;
 } */
 
+/* "Helpful" stuff that just gets in the way when working */
+.walkme-in-wrapper,
+.ui-widget-content .gradebook-tooltip {
+  display: none;
+}
 .ui-widget-overlay {
   opacity:0.2;
 }
@@ -282,16 +286,13 @@ div.discussion-read-state,
 - racing car flags
 - rubric triangles and 
 - rubric marked/selected cell bars 
-- other helpful stuffs that take up room or gets in the way */
-.walkme-in-wrapper,
-.ui-widget-content .gradebook-tooltip,
+- helpful notices that take up room */
 div.discussions-v2__container-image,
 div.shader.meetsMasteryShader,
 div.shader.nearMasteryShader,
 div.shader.wellBelowMasteryShader,
 div#replacement_notice_mount_point,
 div.customFlash.ic-flash-warning.undefined,
-#content div.prompt-banner.CES_SP4_2019,
 .triangle {
   display:none;
 }
@@ -306,7 +307,6 @@ div.rating-tier.selected {
 div.canvas_0.grid-canvas {
   counter-reset: section;
 }
-
 div.canvas_0.grid-canvas > div.ui-widget-content.slick-row > div:first-of-type::before {
   counter-increment: section;
   content: counter(section);
