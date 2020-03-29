@@ -2,6 +2,7 @@
    Use in conjunction with Canvas JS Shim
    For use in "User Javascript and CSS" Browser addon / plugin 
    Select "https://rmit.instructure.com/courses" to effect just course pages.  
+
 */
 
 /* Reduce oversized text (code) in pre elements */
@@ -63,10 +64,16 @@ body.gradebook #not_right_side {
   top:25px;
 }
 
-/* Makes Secondary Items Area (SIA) area a fixed position top right corner, expand on hover. Header needs a z-index fix to work */
-#header {
-  z-index:0;
+div.menu-item__text,
+div.menu-item__text::after {
+  z-index:1000;
 }
+
+
+/* Makes Secondary Items Area (SIA) area a fixed position top right corner, expand on hover. Header needs a z-index fix to work 
+#header {
+  z-index:1;
+}*/
 #not_right_side #right-side-wrapper {
   box-sizing: border-box;
   position: fixed;
@@ -200,11 +207,6 @@ div.Grid__GradeCell__Options {
   height: 1px;
 } */
 
-/* "Helpful" stuff that just gets in the way when working */
-.walkme-in-wrapper,
-.ui-widget-content .gradebook-tooltip {
-  display: none;
-}
 .ui-widget-overlay {
   opacity:0.2;
 }
@@ -286,13 +288,16 @@ div.discussion-read-state,
 - racing car flags
 - rubric triangles and 
 - rubric marked/selected cell bars 
-- helpful notices that take up room */
+- other helpful stuffs that take up room or gets in the way */
+.walkme-in-wrapper,
+.ui-widget-content .gradebook-tooltip,
 div.discussions-v2__container-image,
 div.shader.meetsMasteryShader,
 div.shader.nearMasteryShader,
 div.shader.wellBelowMasteryShader,
 div#replacement_notice_mount_point,
 div.customFlash.ic-flash-warning.undefined,
+#content div.prompt-banner.CES_SP4_2019,
 .triangle {
   display:none;
 }
@@ -307,6 +312,7 @@ div.rating-tier.selected {
 div.canvas_0.grid-canvas {
   counter-reset: section;
 }
+
 div.canvas_0.grid-canvas > div.ui-widget-content.slick-row > div:first-of-type::before {
   counter-increment: section;
   content: counter(section);
@@ -396,9 +402,13 @@ div.secondary-info {
 #students_selectmenu-menu li.ui-selectmenu-hasIcon {
   padding: 0px;
 }
-/* remove non submissions from speed grader drop down menu */
+/* make non submitted students smaller and right shifted */
 li.not_submitted.ui-selectmenu-hasIcon {
-  display: none;
+  transform: 
+    scale(0.66)
+    translateX(35px);
+  transform-origin: 0px 50%;
+  width:150%;
 }
 /* make marked students smaller and right shifted */
 li.graded.ui-selectmenu-hasIcon {
