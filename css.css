@@ -469,5 +469,16 @@ li.graded.ui-selectmenu-hasIcon {
 
 /* Emble Editor: oversize and overlap fix */
 #emble-interface {
+  padding: 5px;
+  transform-origin: 0 0;
   transform: scale(0.8);
+  position: sticky;
+  transition: 0.2s;
+  height: 150px;
+  box-shadow: 0px 0px 1px 2px #CCC;
+  overflow: hidden;
+}
+
+#emble-interface:hover {
+  height: calc( (100vh - 150px) / 0.8);
 }
