@@ -466,3 +466,8 @@ li.graded.ui-selectmenu-hasIcon {
 .answer input[type=text] {
   width: calc(100% - 150px);
 }
+
+/* Emble Editor: oversize and overlap fix */
+#emble-interface {
+  transform: scale(0.8);
+}
