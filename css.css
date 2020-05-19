@@ -175,6 +175,11 @@ div.menu-item__text::after {
   background-color: #fffd;
 }
 
+/* Rubric edit also squashed */
+#assignment_show, #rubrics {
+  width: calc(100vw - 350px);
+}
+
 /* Grade center cell tweaks:
    whitespace and order */
 div.Grid__GradeCell__StartContainer:first-child {
