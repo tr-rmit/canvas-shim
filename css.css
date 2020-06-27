@@ -212,6 +212,21 @@ div.Grid__GradeCell__Options {
   height: 1px;
 } */
 
+/* notes column popup shift */
+.dontblur {
+  opacity: 0.7;
+  transform: scale(0.316);
+  transform-origin: 0px 0px;
+}
+.dontblur textarea,
+.dontblur button
+{
+  font-size: 316%;
+  line-height:1.2;
+  opacity: 1;
+}
+
+
 .ui-widget-overlay {
   opacity:0.2;
 }
