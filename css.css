@@ -64,8 +64,8 @@ div#main {
 }
 
 div#left-side {
-  width:220px;
-  max-width:220px;
+  width:180px;
+  max-width:180px;
   box-sizing: border-box;
   display: flex;
   position: -webkit-sticky; /* for Safari */
