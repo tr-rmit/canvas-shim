@@ -38,6 +38,7 @@ div.entry-content {
 #content-wrapper {
   width:100%;
   max-width:100%;
+  height: auto;
 }
 
 /* Allows Gradebook marks table to grow on screens larger than 640 x 480 */
@@ -49,25 +50,43 @@ div.entry-content {
 #not_right_side {
   max-width: calc(100% - 24px);  
 }
-body.gradebook #not_right_side {
-  width: 100%;
-  max-width: 100%;
-}
+
+/* 20200628: New styles needed to get #main children aligned */
 
 /* Makes Course Navigation Area (CNA) fixed position elements */
-#left-side {
-  position: fixed;
-  overflow-x: hidden;
+/* 20200628: Updates to restore positioning and stickiness in WP2037 */
+
+div.ic-app-course-menu, 
+div#main {
   margin-left:0px;
-  padding-top:20px;
-  left: 60px;
-  top:25px;
+  padding:5px 3px;
+  display:flex;
 }
 
-div.menu-item__text,
-div.menu-item__text::after {
-  z-index:1000;
+div#left-side {
+  width:220px;
+  max-width:220px;
+  box-sizing: border-box;
+  display: flex;
+  position: -webkit-sticky; /* for Safari */
+  position: sticky;
+  top: 0;
+  align-self: flex-start; /* <-- this is the fix */
 }
+
+div#left-side.ic-app-course-menu.list-view li {
+  width: calc(100% - 10px);
+}
+
+div#not_right_side {
+  width: calc(100% - 200px);
+  max-width: calc(100% - 200px);
+  display: flex;
+  box-sizing: border-box;
+  align-self: flex-start; /* <-- this is the fix */
+
+}
+
 
 
 /* Makes Secondary Items Area (SIA) area a fixed position top right corner, expand on hover. Header needs a z-index fix to work 
@@ -124,20 +143,34 @@ div.menu-item__text::after {
   text-decoration: none;
 }
 
+
+.left-side * {
+  box-sizing: border-box;
+}
+
+div.menu-item__text,
+div.menu-item__text::after {
+  z-index:1000;
+}
+
+
+
 /* Moves pop-down search to the left so that navigation is not covered */
 #discussion-toolbar .headerBar {
   left: 180px;
 }
 
-/* Removes the "elipsed anyway so what's the point?" CNA course description */
+/* Removes the "elipsed anyway so what's the point?" CNA course description
+  20200628: extra styles applied: display:none not working */
 #section-tabs-header-subtitle {
   visibility: hidden;
+  position: absolute;
 }
 
-/* Makes room for browser search box in Speed Grader */
+/* Makes room for browser search box in Speed Grader
 .ic-no-flex-layout #main { 
 	margin-top: 35px;
-}
+}  */
 
 /* Stops content collision in Speed Grader */
 #content #full_width_container {
