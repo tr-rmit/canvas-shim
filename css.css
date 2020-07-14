@@ -43,7 +43,7 @@ div.entry-content {
 
 /* Allows Gradebook marks table to grow on screens larger than 640 x 480 */
 #gradebook_wrapper {
-	width:100%;
+	width:calc(100vw - 100px);
 }
 
 /* Allows main content area to grow on screens larger than 640 x 480 */
