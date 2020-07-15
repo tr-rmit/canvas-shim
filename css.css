@@ -41,6 +41,10 @@ div.entry-content {
   height: auto;
 }
 
+div#gradebook_header_container {
+  overflow: visible;
+}
+
 /* Allows Gradebook marks table to grow on screens larger than 640 x 480 */
 #gradebook_wrapper {
 	width:calc(100vw - 100px);
