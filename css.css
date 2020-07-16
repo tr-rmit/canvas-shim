@@ -36,8 +36,8 @@ div.entry-content {
 
 /* Allows content to grow on screens larger than 640 x 480 */
 #content-wrapper {
-  width:100%;
-  max-width:100%;
+  width:100% !important;
+  max-width:100% !important;
   height: auto;
 }
 
@@ -475,6 +475,25 @@ li.graded.ui-selectmenu-hasIcon {
   transform-origin: 0px 50%;
   width:150%;
 }
+
+/* People: assigning students crush fix */  
+div.group-category-contents > div.row-fluid 
+{
+  display: flex;
+}
+div.group-category-contents > 
+ div.row-fluid > div.unassigned-students.ui-droppable
+{
+  width: clamp(248px, 248px, 248px);
+}
+ul.collectionViewItems.groups-list li.group-user {
+  padding: 0px;
+  margin: 0px 1px 1px 0px;
+}
+li.group-user {
+  width: 230px !important;
+}
+
 
 
 /* Discussion titles crunch fix */
