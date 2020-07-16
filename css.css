@@ -88,7 +88,6 @@ div#not_right_side {
   display: flex;
   box-sizing: border-box;
   align-self: flex-start; /* <-- this is the fix */
-
 }
 
 
@@ -173,17 +172,17 @@ div.menu-item__text::after {
 
 /* Makes room for browser search box in Speed Grader
 .ic-no-flex-layout #main { 
-	margin-top: 35px;
+  margin-top: 35px;
 }  */
 
 /* Stops content collision in Speed Grader */
 #content #full_width_container {
-	top:6.5em;
+  top:6.5em;
 }
 
 /* Reduces uneccessary scroll bar in ... Speed Grader? */
 #left_side_inner {
-	height: calc(100% - 2px) !important;
+  height: calc(100% - 2px) !important;
 }
 
 /* Sets marking area to 90% in Speed Grader */
@@ -493,7 +492,9 @@ ul.collectionViewItems.groups-list li.group-user {
 li.group-user {
   width: 230px !important;
 }
-
+.group .group-users ul.collectionViewItems {
+  width: default;
+}
 
 
 /* Discussion titles crunch fix */
