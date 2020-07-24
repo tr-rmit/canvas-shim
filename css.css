@@ -401,17 +401,22 @@ table.rubric_table > tbody > tr {
   width:20px;
 } */
 
-/* Tightenup up groups layout, release realestate */
+/* Tightenup up groups layout, release realestate 
+   UPDATE: Layout conflict, sticky broken, change to fixed */
+div#group_categories_tabs {
+  margin-left:220px;
+}
 div.unassigned-students {	
-  position: sticky;	
-  top: 0px;	
+  position: fixed;	
+  top: 65px;	
+  left: 250px;
 }
 
 div.unassigned-students > div {
   min-width:200px !important;
 }
-.ui-cnvs-scrollable {
-  height:calc(100vh - 110px) !important;
+div.ui-cnvs-scrollable {
+  height:calc(100vh - 160px) !important;
 }
 div.group-user-name.ellipsis {
   text-overflow: clip;
