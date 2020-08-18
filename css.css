@@ -49,6 +49,10 @@ div#gradebook_header_container {
 #gradebook_wrapper {
 	width:calc(100vw - 100px);
 }
+div#gradebook-toolbar {
+  display: inline-flex;
+}
+
 
 /* Allows main content area to grow on screens larger than 640 x 480 */
 #not_right_side {
@@ -488,17 +492,27 @@ div.group-category-contents > div.row-fluid
 div.group-category-contents > 
  div.row-fluid > div.unassigned-students.ui-droppable
 {
-  width: clamp(248px, 248px, 248px);
+  width: clamp(245px, 245px, 245px);
+}
+div.row-fluid div.span9.groups {
+  width: calc(100vw - 600px);
+  margin-left: 0px;
+}
+.group div.group-users {
+  margin-top:0px;
+}
+.group .group-users ul.collectionViewItems {
+  width: calc(100% - 5px);
+  overflow: auto;
+  columns: 230px;
+  column-gap: 0px;
 }
 ul.collectionViewItems.groups-list li.group-user {
   padding: 0px;
   margin: 0px 1px 1px 0px;
 }
-li.group-user {
-  width: 230px !important;
-}
-.group .group-users ul.collectionViewItems {
-  width: default;
+.group li.group-user {
+  min-width: 230px !important;
 }
 
 
