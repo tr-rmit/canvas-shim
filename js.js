@@ -31,21 +31,21 @@ switch (courseShell) {
     document.getElementById('not_right_side').style.backgroundColor = 'white';
 }
 
+/* some "resistant" (dynamic) styles need an event to trigger */
 window.onscroll = function() {
 
 /* Makes the course navigation and unenrolled students "sticky"
    Magic Numbers: 25px and -40px (nav) works well now but this may change in the future. */
   var ls = document.getElementById('left-side');
-  
-// wtf? There are two of them? UPDATE: Array of tabs ...  	
-  var uas = document.getElementsByClassName('unassigned-students'); 	
-  var minTop = Math.max(-40,(25-window.pageYOffset))+"px";	
-  ls.style.top = minTop;	
-  minTop = Math.max(0,(window.pageYOffset-220))+"px";	
-  for (ua in uas) {
-	  if (uas[ua].style.position != 'relative')	
-	    uas[ua].style.position = 'relative';	
-	  uas[ua].style.top=minTop; 	
+// wtf? There are two of them?  
+  var uas = document.getElementsByClassName('unassigned-students')[1]; 
+  var minTop = Math.max(-40,(25-window.pageYOffset))+"px";
+  ls.style.top = minTop;
+  minTop = Math.max(0,(window.pageYOffset-270))+"px";
+  if (uas) {
+    if(uas.style.position != 'relative')
+      uas.style.position = 'relative';
+    uas.style.top=minTop;
   }
 
 // Remove brs to increase realestate in groups area
@@ -57,12 +57,14 @@ window.onscroll = function() {
 // Remove ellipses
   tags = document.getElementsByClassName('ellipsis');
   tagslen = tags.length;
-  if (!isNaN(tagslen) ) 
+  if (!isNaN(tagslen) ) {
     for(let i=0; i<tagslen; i++) {
       tags[i].style.textOverflow='clip';
     }
+  }
+  /* Dropdown box hard width override : WIP */
+  document.getElementById('students_selectmenu-button').style.width = 'fit-content';
 }
-
 /* Inserts "Student View" link into course navigation */
 if (document.getElementById('section-tabs')) {
   document.getElementById('section-tabs').innerHTML+='<li class="section"><a href="/courses/' + courseShell + '/student_view"  rel="nofollow" data-method="post">Student View</a></li>';
