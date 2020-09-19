@@ -60,7 +60,6 @@ div#gradebook-toolbar {
 }
 
 /* 20200628: New styles needed to get #main children aligned */
-
 /* Makes Course Navigation Area (CNA) fixed position elements */
 /* 20200628: Updates to restore positioning and stickiness in WP2037 */
 
@@ -96,10 +95,7 @@ div#not_right_side {
 
 
 
-/* Makes Secondary Items Area (SIA) area a fixed position top right corner, expand on hover. Header needs a z-index fix to work 
-#header {
-  z-index:1;
-}*/
+/* Makes Secondary Items Area (SIA) area a fixed position top right corner, expand on hover.*/
 #not_right_side #right-side-wrapper {
   box-sizing: border-box;
   position: fixed;
@@ -150,7 +146,6 @@ div#not_right_side {
   text-decoration: none;
 }
 
-
 .left-side * {
   box-sizing: border-box;
 }
@@ -160,24 +155,25 @@ div.menu-item__text::after {
   z-index:1000;
 }
 
-
-
 /* Moves pop-down search to the left so that navigation is not covered */
 #discussion-toolbar .headerBar {
   left: 180px;
 }
 
-/* Removes the "elipsed anyway so what's the point?" CNA course description
-  20200628: extra styles applied: display:none not working */
+/* Removes the elipsed CNA course description
+  20200628: extra styles applied: display:none not working, alt hide approach */
 #section-tabs-header-subtitle {
   visibility: hidden;
   position: absolute;
 }
 
-/* Makes room for browser search box in Speed Grader
-.ic-no-flex-layout #main { 
-  margin-top: 35px;
-}  */
+/* Makes room for browser search box in Speed Grader */
+body.grades.ic-no-flex-layout { 
+  margin-top: 50px;
+}  
+body.grades.ic-no-flex-layout div#full_width_container { 
+  margin-top: 10px;
+} 
 
 /* Stops content collision in Speed Grader */
 #content #full_width_container {
@@ -232,6 +228,11 @@ div.Grid__GradeCell__Content span.Grade {
   display: inline-block;
   width: 40px;
   text-align: center;
+}
+/* Dropdown box hard width override : WIP*/
+#students_selectmenu a#students_selectmenu-button {
+  width: fit-content !important;
+  background-color: #f99;
 }
 /* Speedy grader link */
 div.Grid__GradeCell__Options {
@@ -367,43 +368,6 @@ div.rating-tier.selected {
   background-color:#0994;
 }
 
-/* Count rows in grade center so we can see how many rows exist
-   GOTCHA: Canvas renumbers rows on scroll, only 25 are counted  
-div.canvas_0.grid-canvas {
-  counter-reset: section;
-}
-
-div.canvas_0.grid-canvas > div.ui-widget-content.slick-row > div:first-of-type::before {
-  counter-increment: section;
-  content: counter(section);
-  position: absolute;
-  right:3px;
-  z-index:10;
-}
-*/
-
-/* Discussion font too big, 
-   GOTCHA: Layout whitespace issues ;-( 
-div[class*='pinned-discussions'] {
-  transform: scale(.8);
-  transform-origin: 10% 10%;
-  display: inline-block;
-  border:2px red solid;
-} */
-
-/* Numbers Rubric marking rows, 
-   GOTCHA: Destroys formatting but helps debug 
-table.rubric_table > tbody > tr {
-  display: list-item;
-  margin-left: 1.5em;
-  list-style-type: decimal;
-} */
-
-/* Reduce width of Grade center columns
-   Work In Progress
-.slick-column-name {
-  width:20px;
-} */
 
 /* Tightenup up groups layout, release realestate 
    UPDATE: Layout conflict, sticky broken, change to fixed */
@@ -413,7 +377,7 @@ div#group_categories_tabs {
 div.unassigned-students {	
   position: fixed;	
   top: 65px;	
-  left: 250px;
+  left: -20px;
 }
 
 div.unassigned-students > div {
