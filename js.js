@@ -54,7 +54,7 @@ window.onscroll = function() {
     // get the last one
     uas = uas[uas.length-1];
     let uasPos = uas.getBoundingClientRect();
-    console.log(uasPos);
+    //console.log(uasPos);
     let uasStartTop = 227; // magic number
     minTop = Math.max(0,(window.pageYOffset-uasStartTop))+"px";
     if (uas) {
