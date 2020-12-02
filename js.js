@@ -47,7 +47,25 @@ window.onscroll = function() {
       uas.style.position = 'relative';
     uas.style.top=minTop;
   } */
-
+  
+  /* Unassigned Students Feature: forces unenrolled students to be "sticky" */
+  var uas = document.getElementsByClassName('unassigned-students');
+  if (uas.length>0) {
+    // get the last one
+    uas = uas[uas.length-1];
+    let uasPos = uas.getBoundingClientRect();
+    console.log(uasPos);
+    let uasStartTop = 227; // magic number
+    minTop = Math.max(0,(window.pageYOffset-uasStartTop))+"px";
+    if (uas) {
+      if(uas.style.position != 'relative')
+        uas.style.position = 'relative';
+      uas.style.top=minTop;
+    }
+  } 
+  
+  
+  
 // Remove brs to increase realestate in groups area
   var tags = document.getElementsByClassName('show-group-full');
   if (tags.length > 0) 
@@ -65,10 +83,11 @@ window.onscroll = function() {
   /* Dropdown box hard width override : WIP */
   document.getElementById('students_selectmenu-button').style.width = 'fit-content';
 }
+
 /* Inserts "Student View" link into course navigation */
 if (document.getElementById('section-tabs')) {
   document.getElementById('section-tabs').innerHTML+='<li class="section"><a href="/courses/' + courseShell + '/student_view"  rel="nofollow" data-method="post">Student View</a></li>';
 }
 
 /* Allows discussion content to grow on screens larger than 640 x 480, removal of "stubborn" dynamically applied style */
-document.getElementById('not_right_side').classList.remove('ic-app-main-content');
+// document.getElementById('not_right_side').classList.remove('ic-app-main-content');
