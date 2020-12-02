@@ -370,14 +370,11 @@ div.rating-tier.selected {
 
 
 /* Tightenup up groups layout, release realestate 
-   UPDATE: Layout conflict, sticky broken, change to fixed */
-div#group_categories_tabs {
-  margin-left:220px;
-}
+   UPDATE: Layout conflict, sticky broken, now done with js */
 div.unassigned-students {	
-  position: fixed;	
-  top: 65px;	
-  left: -20px;
+  position: sticky;	
+  top: 0px;
+  float: initial;
 }
 
 div.unassigned-students > div {
@@ -397,7 +394,9 @@ div.group-user-name.ellipsis {
   line-height: 25px;
   margin-bottom:1px;
 }
-
+.group div.group-users ul.collectionViewItems {
+  overflow: initial;
+}
 .collectionViewItems.groups-list li {
   padding: 0.5em 0;
 }
@@ -468,15 +467,23 @@ div.row-fluid div.span9.groups {
 .group .group-users ul.collectionViewItems {
   width: calc(100% - 5px);
   overflow: auto;
-  columns: 230px;
-  column-gap: 0px;
+  columns: 240px;
+  column-gap: 2px;
 }
-ul.collectionViewItems.groups-list li.group-user {
+ul.collectionViewItems li.group-user {
   padding: 0px;
-  margin: 0px 1px 1px 0px;
+  margin: 0px 0px 2px 0px;
+ 
 }
+/* allocated students */
 .group li.group-user {
-  min-width: 230px !important;
+  width:calc(100% - 2px);
+  display: inline-block;
+}
+/* Columns causing bad li internal reflow */
+.group li.group-user div.group-user-name {
+  display: inline-block;
+  max-height:22px;
 }
 
 
