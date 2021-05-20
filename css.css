@@ -53,6 +53,22 @@ div#gradebook-toolbar {
   display: inline-flex;
 }
 
+/* Grade center ratings description getting crushed by obese criteria, not showing line feeds; these issues fixed */
+table.rubric_table td.criterion_description {
+  width: 25%;
+  max-width: 800px;
+  white-space: pre-line;
+  vertical-align: top;
+}
+span.description.description_title {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+span.description.description_title::first-line {
+  font-weight: bold;
+  
+}
 
 /* Allows main content area to grow on screens larger than 640 x 480 */
 #not_right_side {
