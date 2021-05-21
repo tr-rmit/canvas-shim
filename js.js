@@ -64,9 +64,7 @@ window.onscroll = function() {
     }
   } 
   
-  
-  
-// Remove brs to increase realestate in groups area
+  // Remove brs to increase realestate in groups area
   var tags = document.getElementsByClassName('show-group-full');
   if (tags.length > 0) 
     for(let i=0; i<tags.length; i++)
@@ -80,8 +78,10 @@ window.onscroll = function() {
       tags[i].style.textOverflow='clip';
     }
   }
+  
   /* Dropdown box hard width override : WIP */
   document.getElementById('students_selectmenu-button').style.width = 'fit-content';
+  
 }
 
 /* Inserts "Student View" link into course navigation */
@@ -89,5 +89,19 @@ if (document.getElementById('section-tabs')) {
   document.getElementById('section-tabs').innerHTML+='<li class="section"><a href="/courses/' + courseShell + '/student_view"  rel="nofollow" data-method="post">Student View</a></li>';
 }
 
-/* Allows discussion content to grow on screens larger than 640 x 480, removal of "stubborn" dynamically applied style */
-// document.getElementById('not_right_side').classList.remove('ic-app-main-content');
+/* 20210521 Shelved: Speed Grader: Replace long description pop up link with actual long description text, unfortunately the long descriptions aren't in the document, suspect they are requested one by one
+var rh = document.getElementById("rubric_holder");
+if (rh) {
+  console.log("rubric_holder found");
+  // look for long desriptions
+  vldt = setInterval(function() {
+    vld = rubric_holder.querySelectorAll("div.long-description");
+    console.log(vld);
+    if (vld.length > 0) {
+      clearTimeout(vldt);
+      cld = document.querySelectorAll("span[aria-label='Criterion Long Description']");
+      console.log(cld);
+    }
+  }, 1000);
+}
+*/
