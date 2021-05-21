@@ -2,7 +2,6 @@
    Use in conjunction with Canvas JS Shim
    For use in "User Javascript and CSS" Browser addon / plugin 
    Select "https://rmit.instructure.com/courses" to effect just course pages.  
-
 */
 
 /* Reduce oversized text (code) in pre elements */
@@ -26,8 +25,7 @@ nav #section-tabs i.nav-icon.icon-off {
   position: absolute;
   right: 15px;
   color: #ccc;
-  transform: scale(0.7);
-  
+  transform: scale(0.7); 
 }
 /* Transparent elements, no BG color set */
 div.entry-content {
@@ -37,37 +35,8 @@ div.entry-content {
 /* Allows content to grow on screens larger than 640 x 480 */
 #content-wrapper {
   width:100% !important;
-  max-width:100% !important;
+  max-width: 100% !important;
   height: auto;
-}
-
-div#gradebook_header_container {
-  overflow: visible;
-}
-
-/* Allows Gradebook marks table to grow on screens larger than 640 x 480 */
-#gradebook_wrapper {
-	width:calc(100vw - 100px);
-}
-div#gradebook-toolbar {
-  display: inline-flex;
-}
-
-/* Grade center ratings description getting crushed by obese criteria, not showing line feeds; these issues fixed */
-table.rubric_table td.criterion_description {
-  width: 25%;
-  max-width: 800px;
-  white-space: pre-line;
-  vertical-align: top;
-}
-span.description.description_title {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-}
-span.description.description_title::first-line {
-  font-weight: bold;
-  
 }
 
 /* Allows main content area to grow on screens larger than 640 x 480 */
@@ -108,8 +77,6 @@ div#not_right_side {
   box-sizing: border-box;
   align-self: flex-start; /* <-- this is the fix */
 }
-
-
 
 /* Makes Secondary Items Area (SIA) area a fixed position top right corner, expand on hover.*/
 #not_right_side #right-side-wrapper {
@@ -183,27 +150,36 @@ div.menu-item__text::after {
   position: absolute;
 }
 
-/* Makes room for browser search box in Speed Grader */
-body.grades.ic-no-flex-layout { 
-  margin-top: 50px;
-}  
-body.grades.ic-no-flex-layout div#full_width_container { 
-  margin-top: 10px;
-} 
-
-/* Stops content collision in Speed Grader */
-#content #full_width_container {
-  top:6.5em;
+/* Please go away ...
+- racing car flags
+- rubric triangles and 
+- rubric marked/selected cell bars 
+- other helpful stuffs that take up room or gets in the way */
+.walkme-in-wrapper,
+.ui-widget-content .gradebook-tooltip,
+div.discussions-v2__container-image,
+div.shader.meetsMasteryShader,
+div.shader.nearMasteryShader,
+div.shader.wellBelowMasteryShader,
+div#replacement_notice_mount_point,
+div.customFlash.ic-flash-warning.undefined,
+#content div.prompt-banner.CES_SP4_2019,
+.triangle {
+  display:none;
 }
 
-/* Reduces uneccessary scroll bar in ... Speed Grader? */
-#left_side_inner {
-  height: calc(100% - 2px) !important;
+/******** All Grade Center Styles ********/
+
+div#gradebook_header_container {
+  overflow: visible;
 }
 
-/* Sets marking area to 90% in Speed Grader */
-#full_width_container #right_side {
-  width:90%;
+/* Allows Gradebook marks table to grow on screens larger than 640 x 480 */
+#gradebook_wrapper {
+	width:calc(100vw - 100px);
+}
+div#gradebook-toolbar {
+  display: inline-flex;
 }
 
 /* 20181021: Grade center table squashed, restoring full width and moving comment button */
@@ -227,13 +203,51 @@ body.grades.ic-no-flex-layout div#full_width_container {
   background-color: #fffd;
 }
 
+/* 20210520: Grade center ratings description getting crushed by obese criteria, not showing line feeds; these issues fixed */
+table.rubric_table td.criterion_description {
+  width: 25%;
+  min-width: 200px;
+  max-width:800px;
+  white-space: pre-line;
+}
+span.description.description_title {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+span.description.description_title::first-line {
+  font-weight: bold;
+}
+
+/* Makes room for browser search box in Speed Grader */
+body.grades.ic-no-flex-layout { 
+  margin-top: 50px;
+}  
+body.grades.ic-no-flex-layout div#full_width_container { 
+  margin-top: 10px;
+} 
+
+/* Stops content collision in Speed Grader */
+#content #full_width_container {
+  top:6.5em;
+}
+
+/* Reduces uneccessary scroll bar in ... Speed Grader? */
+#left_side_inner {
+  height: calc(100% - 2px) !important;
+}
+
+/* Sets marking area to 90% in Speed Grader */
+#full_width_container #right_side {
+  width:90%;
+}
+
 /* Rubric edit also squashed */
 #assignment_show, #rubrics {
   width: calc(100vw - 350px);
 }
 
-/* Grade center cell tweaks:
-   whitespace and order */
+/* Grade center cell tweaks: whitespace and order */
 div.Grid__GradeCell__StartContainer:first-child {
   display: none;
 }
@@ -245,11 +259,13 @@ div.Grid__GradeCell__Content span.Grade {
   width: 40px;
   text-align: center;
 }
-/* Dropdown box hard width override : WIP*/
+
+/* Dropdown box hard width override : WIP */
 #students_selectmenu a#students_selectmenu-button {
   width: fit-content !important;
   background-color: #f99;
 }
+
 /* Speedy grader link */
 div.Grid__GradeCell__Options {
   background-color:#cee8f9;
@@ -258,18 +274,55 @@ div.Grid__GradeCell__Options {
   left:0px;
 }
 
-/* Makes long descriptions visible, removes links to make them popup */
-.long_description_link {
-  display:none;
+/* Rework rubric selected/mastery cells */
+div.rating-tier.selected {
+  background-color:#0994;
 }
-/* Part of above issue, disabled now that fields are not being used.
-.long_description {
-  display:block !important;
-  width:95%;
-  height: 1px;
-} */
 
-/* notes column popup shift */
+/* Grade Center Beta Styles*/
+#gradebook-toolbar .gradebook-menus {
+  margin-left: 300px;
+}
+#search-filter-container {
+  position: absolute;
+  left:0px;
+}
+div.student-name {
+  font-size: 12px;
+}
+div.secondary-info {
+  font-size: 14px;
+  padding: 2px;
+}
+
+/* make speed grader drop down larger and tighten up padding inside */
+#students_selectmenu-menu {
+  height: calc(100vh - 110px) !important;
+  max-height: initial !important;
+}
+#students_selectmenu-menu li.ui-selectmenu-hasIcon {
+  padding: 0px;
+}
+
+/* make non submitted students smaller and right shifted */
+li.not_submitted.ui-selectmenu-hasIcon {
+  transform: 
+    scale(0.66)
+    translateX(35px);
+  transform-origin: 0px 50%;
+  width:150%;
+}
+
+/* make marked students smaller and right shifted */
+li.graded.ui-selectmenu-hasIcon {
+  transform: 
+    scale(0.66)
+    translateX(35px);
+  transform-origin: 0px 50%;
+  width:150%;
+}
+
+/* Grade center notes column popup shift shrink translucencify */
 .dontblur {
   opacity: 0.7;
   transform: scale(0.316);
@@ -282,21 +335,44 @@ div.Grid__GradeCell__Options {
   line-height:1.2;
   opacity: 1;
 }
-
-
 .ui-widget-overlay {
   opacity:0.2;
 }
-/* 20180308: Renamed walkmein widget has stubborn !important styles that are applied dynamically... */
+
+/* 20180308: Walkmein widget that gets in the way has stubborn !important styles that make it hard to remove ... */
 #walkme-player {
   clip:rect(0px,0px,0px,0px);;
 }
+
 /* Removes rubric "lightbox" background so markers can scroll the document when marking. */
 .ui-widget-overlay {
   display: none;
 }
 
-/*** Make Discussions Board More Readable ***/
+/* 20210521 Shelved: Speed Grader: Replace long description pop up link with actual long description text
+.long_description_link {
+  display:none; 
+  border: dotted red 2px;
+}
+div.long-description {
+  border: 2px dotted red;
+  padding:5px;
+} 
+div.long-description span {
+  border: 2px dotted green;
+  padding:5px;
+}
+span[aria-label="Criterion Long Description"] {
+  border: 2px dotted purple;
+  padding:5px;
+}
+*/
+
+/******** End Grade Center Styles ********/
+
+
+
+/******** All Discussion Board Styles ********/
 
 /* All Discussion Entries Container */
 div#discussion_subentries {
@@ -361,29 +437,29 @@ div.discussion-read-state,
   border-color: #ccc;
 }
 
-/* Please go away ...
-- racing car flags
-- rubric triangles and 
-- rubric marked/selected cell bars 
-- other helpful stuffs that take up room or gets in the way */
-.walkme-in-wrapper,
-.ui-widget-content .gradebook-tooltip,
-div.discussions-v2__container-image,
-div.shader.meetsMasteryShader,
-div.shader.nearMasteryShader,
-div.shader.wellBelowMasteryShader,
-div#replacement_notice_mount_point,
-div.customFlash.ic-flash-warning.undefined,
-#content div.prompt-banner.CES_SP4_2019,
-.triangle {
-  display:none;
+/* Discussion titles crunch fix */
+.ic-discussion-content-container > span > span > span:first-child {
+  flex: unset;
+  width: calc(100% - 85px);
+}
+.ic-discussion-content-container > span > span > span:last-child {
+  flex: unset;
+  width: 85px;
+}
+.discussion-availability.ic-item-row__content-col.ic-discussion-row__content {
+  width: 290px;
+  position: absolute;
+  left: 50px;
+  bottom: 0px;
+  font-size: 80%;
+  text-align: left;
 }
 
-/* Rework rubric selected/mastery cells */
-div.rating-tier.selected {
-  background-color:#0994;
-}
+/******** End Discussion Board Styles ********/
 
+
+
+/******** All Groups Allocation Styles ********/
 
 /* Tightenup up groups layout, release realestate 
    UPDATE: Layout conflict, sticky broken, now done with js */
@@ -392,7 +468,6 @@ div.unassigned-students {
   top: 0px;
   float: initial;
 }
-
 div.unassigned-students > div {
   min-width:200px !important;
 }
@@ -415,52 +490,6 @@ div.group-user-name.ellipsis {
 }
 .collectionViewItems.groups-list li {
   padding: 0.5em 0;
-}
-
-/* Grade Center Beta Styles*/
-
-#gradebook-toolbar .gradebook-menus {
-  margin-left: 300px;
-}
-
-#search-filter-container {
-  position: absolute;
-  left:0px;
-}
-
-div.student-name {
-  font-size: 12px;
-}
-
-div.secondary-info {
-  font-size: 14px;
-  padding: 2px;
-}
-
-/* make speed grader drop down larger ... */
-#students_selectmenu-menu {
-  height: calc(100vh - 110px) !important;
-  max-height: initial !important;
-}
-/* ... and tighten up padding inside */
-#students_selectmenu-menu li.ui-selectmenu-hasIcon {
-  padding: 0px;
-}
-/* make non submitted students smaller and right shifted */
-li.not_submitted.ui-selectmenu-hasIcon {
-  transform: 
-    scale(0.66)
-    translateX(35px);
-  transform-origin: 0px 50%;
-  width:150%;
-}
-/* make marked students smaller and right shifted */
-li.graded.ui-selectmenu-hasIcon {
-  transform: 
-    scale(0.66)
-    translateX(35px);
-  transform-origin: 0px 50%;
-  width:150%;
 }
 
 /* People: assigning students crush fix */  
@@ -502,30 +531,12 @@ ul.collectionViewItems li.group-user {
   max-height:22px;
 }
 
+/******** End Groups Allocation Styles ********/
 
-/* Discussion titles crunch fix */
 
-.ic-discussion-content-container > span > span > span:first-child {
-  flex: unset;
-  width: calc(100% - 85px);
-}
 
-.ic-discussion-content-container > span > span > span:last-child {
-  flex: unset;
-  width: 85px;
-}
-
-.discussion-availability.ic-item-row__content-col.ic-discussion-row__content {
-  width: 290px;
-  position: absolute;
-  left: 50px;
-  bottom: 0px;
-  font-size: 80%;
-  text-align: left;
-}
 
 /* Quiz Styles */
-
 .answer_arrow.info {
   background-color: #00ac18;
   right: 5px;
@@ -534,18 +545,15 @@ ul.collectionViewItems li.group-user {
   color:white !important;
   padding:0px 10px;
 }
-
 .answer_arrow.info,
 .answer_arrow.info::before,
 .answer_arrow.info::after
 {
   background-size: 0px 0px;
 }
-
 .answer.correct_answer {
   background-color:#e5ffe8;
 }
-
 .answer input[type=text] {
   width: calc(100% - 150px);
 }
@@ -561,7 +569,6 @@ ul.collectionViewItems li.group-user {
   box-shadow: 0px 0px 1px 2px #CCC;
   overflow: hidden;
 }
-
 #emble-interface:hover {
   height: calc( (100vh - 150px) / 0.8);
 }
