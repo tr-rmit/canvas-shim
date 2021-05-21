@@ -150,6 +150,10 @@ div.menu-item__text::after {
   position: absolute;
 }
 
+
+
+
+
 /* Please go away ...
 - racing car flags
 - rubric triangles and 
@@ -207,16 +211,14 @@ div#gradebook-toolbar {
 table.rubric_table td.criterion_description {
   width: 25%;
   min-width: 200px;
-  max-width:800px;
-  white-space: pre-line;
 }
 span.description.description_title {
-  position: absolute;
-  top: 0px;
-  left: 0px;
+  white-space: pre-line;
+  display: inline-block; 
 }
 span.description.description_title::first-line {
   font-weight: bold;
+
 }
 
 /* Makes room for browser search box in Speed Grader */
@@ -245,6 +247,10 @@ body.grades.ic-no-flex-layout div#full_width_container {
 /* Rubric edit also squashed */
 #assignment_show, #rubrics {
   width: calc(100vw - 350px);
+}
+/* Ratings space not shared equally beyond column 5, removing arbitrary 20% width */
+table.ratings td.rating {
+  width: inherit;
 }
 
 /* Grade center cell tweaks: whitespace and order */
