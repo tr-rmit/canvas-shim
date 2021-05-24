@@ -212,13 +212,14 @@ table.rubric_table td.criterion_description {
   width: 25%;
   min-width: 200px;
 }
-span.description.description_title {
+span.description.description_title,
+div.description.react-rubric-cell span {
   white-space: pre-line;
   display: inline-block; 
 }
-span.description.description_title::first-line {
+span.description.description_title::first-line,
+div.description.react-rubric-cell span::first-line {
   font-weight: bold;
-
 }
 
 /* Makes room for browser search box in Speed Grader */
