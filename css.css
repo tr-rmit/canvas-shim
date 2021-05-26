@@ -13,6 +13,13 @@ body {
   background-size: cover;
   background-attachment: fixed;
   background-position: center; 
+  --ic-brand-global-nav-ic-icon-svg-fill--active: #a11;
+  --ic-brand-global-nav-ic-icon-svg-fill: #07E;
+  --ic-link-color: #07E;
+}
+
+body a {
+  color: var(--ic-link-color);
 }
 
 #breadcrumbs,
@@ -120,7 +127,7 @@ div#not_right_side {
 
 #left-side li.section a.active {
   color:white;
-  background-color: #e60e27;
+  background-color: var(--ic-brand-global-nav-ic-icon-svg-fill--active);
 }
 
 #left-side li.section a:hover {
@@ -150,6 +157,10 @@ div.menu-item__text::after {
   position: absolute;
 }
 
+/* Make modules hover state light green to match */
+div.ig-list .ig-row:hover {
+  background-color: #efe;
+}
 
 
 
