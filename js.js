@@ -31,8 +31,47 @@ switch (courseShell) {
     document.getElementById('not_right_side').style.backgroundColor = 'white';
 }
 
+/* Call when document is ready */
+$(function () {
+  
+  /* Inserts "Student View" link into course navigation */
+  if (document.getElementById('section-tabs')) {
+    document.getElementById('section-tabs').innerHTML+='<li class="section"><a href="/courses/' + courseShell + '/student_view"  rel="nofollow" data-method="post">Student View</a></li>';
+  }
+
+});
+
 /* some "resistant" (dynamic) styles need an event to trigger */
+var hFixed=[];
 window.onscroll = function() {
+  
+// Fix the f*cking headings!
+  let hSizes=["dummy","2rem","1.9rem","1.7rem","1.5rem","1.3rem","1.2rem"];
+  let hColrs=["dummy",
+  "var(--ic-brand-global-nav-menu-item__text-color)",
+  "var(--ic-brand-global-nav-menu-item__text-color)",
+  "var(--ic-brand-global-nav-menu-item__text-color)",
+  "var(--ic-brand-global-nav-menu-item__text-color)",
+  "var(--ic-brand-global-nav-menu-item__text-color)",
+  "var(--ic-brand-global-nav-menu-item__text-color)"];
+  for (let h=1; h<=6; h++) {
+    let hs = document.getElementsByTagName('h'+h);
+    if (hs.length && !hFixed[h]) {
+      for(tag=0; tag<hs.length; tag++) {
+        console.log(hs[tag].style);
+        if (!hs[tag].classList.contains('banner-title')) {
+          hs[tag].setAttribute('style',
+          'font-family: "Museo500", "Helvetica Neue", Helvetica, Arial, sans-serif !important; ' + 
+          'margin: 0.5em 0em !important; ' +
+          'font-size: '+ hSizes[h] + " !important; " +
+          'color: ' +    hColrs[h] + " !important; " +
+          'font-weight: initial !important; ' +
+          'font-style: initial !important; ');        
+        }
+      }
+      hFixed[h] = true;
+    }
+  }
 
 /* Retired Feature: makes the course navigation and unenrolled students "sticky"
    Magic Numbers: 25px and -0px (nav) works well now but this may change in the future. 
@@ -66,27 +105,23 @@ window.onscroll = function() {
   
   // Remove brs to increase realestate in groups area
   var tags = document.getElementsByClassName('show-group-full');
-  if (tags.length > 0) 
+  if (tags.length) 
     for(let i=0; i<tags.length; i++)
       tags[i].parentNode.removeChild(tags[i]);
       
 // Remove ellipses
   tags = document.getElementsByClassName('ellipsis');
   tagslen = tags.length;
-  if (!isNaN(tagslen) ) {
+  if (tags.length) {
     for(let i=0; i<tagslen; i++) {
       tags[i].style.textOverflow='clip';
     }
   }
   
   /* Dropdown box hard width override : WIP */
-  document.getElementById('students_selectmenu-button').style.width = 'fit-content';
+  if (document.getElementById('students_selectmenu-button'))
+    document.getElementById('students_selectmenu-button').style.width = 'fit-content';
   
-}
-
-/* Inserts "Student View" link into course navigation */
-if (document.getElementById('section-tabs')) {
-  document.getElementById('section-tabs').innerHTML+='<li class="section"><a href="/courses/' + courseShell + '/student_view"  rel="nofollow" data-method="post">Student View</a></li>';
 }
 
 /* 20210521 Shelved: Speed Grader: Replace long description pop up link with actual long description text, unfortunately the long descriptions aren't in the document, suspect they are requested one by one
