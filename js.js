@@ -55,7 +55,7 @@ window.onscroll = function() {
   "var(--ic-brand-global-nav-menu-item__text-color)",
   "var(--ic-brand-global-nav-menu-item__text-color)"];
   for (let h=1; h<=6; h++) {
-    let hs = document.getElementsByTagName('h'+h);
+    let hs = document.getElementsByClassName('show-content')[0].getElementsByTagName('h'+h);
     if (hs.length && !hFixed[h]) {
       for(tag=0; tag<hs.length; tag++) {
         console.log(hs[tag].style);
