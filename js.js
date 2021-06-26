@@ -15,6 +15,7 @@ var isSpeedGrader = urlArray[4] ?
 
 /* Use courseShell to style each of your courses individually, for example the background, by adding a new case block */
 
+
 switch (courseShell) {
   
   case '249': // WP1797
@@ -41,8 +42,9 @@ $(function () {
 
 });
 
-/* some "resistant" (dynamic) styles need an event to trigger */
+/* some "resistant" (dynamic) styles and elements need an event to trigger */
 var hFixed=[];
+var activeSGPF = false;
 window.onscroll = function() {
   
 // Fix the f*cking headings!
@@ -55,23 +57,73 @@ window.onscroll = function() {
   "var(--ic-brand-global-nav-menu-item__text-color)",
   "var(--ic-brand-global-nav-menu-item__text-color)"];
   for (let h=1; h<=6; h++) {
-    let hs = document.getElementsByClassName('show-content')[0].getElementsByTagName('h'+h);
-    if (hs.length && !hFixed[h]) {
-      for(tag=0; tag<hs.length; tag++) {
-        console.log(hs[tag].style);
-        if (!hs[tag].classList.contains('banner-title')) {
-          hs[tag].setAttribute('style',
-          'font-family: "Museo500", "Helvetica Neue", Helvetica, Arial, sans-serif !important; ' + 
-          'margin: 0.5em 0em !important; ' +
-          'font-size: '+ hSizes[h] + " !important; " +
-          'color: ' +    hColrs[h] + " !important; " +
-          'font-weight: initial !important; ' +
-          'font-style: initial !important; ');        
+    if (!hFixed[h]) {
+    // Are we on a modules page?
+      let hs = document.getElementsByClassName('show-content')[0];
+    /* If not, are we on a discussions page?
+       20210603 Update: This doesn't work so well
+      if (!hs)
+        hs = document.getElementById('discussion_container'); */
+      if (hs)
+        hs = hs.getElementsByTagName('h'+h);
+      if (hs?.length) {
+        for(tag=0; tag<hs.length; tag++) {
+          console.log(hs[tag].style);
+          if (!hs[tag].classList.contains('banner-title')) {
+            hs[tag].setAttribute('style',
+            'font-family: "Museo500", "Helvetica Neue", Helvetica, Arial, sans-serif !important; ' + 
+            'margin: 0.5em 0em !important; ' +
+            'font-size: '+ hSizes[h] + " !important; " +
+            'color: ' +    hColrs[h] + " !important; " +
+            'font-weight: initial !important; ' +
+            'font-style: initial !important; ');        
+          }
         }
-      }
-      hFixed[h] = true;
+        hFixed[h] = true;
+      }      
     }
   }
+/* Prefill Speed grader comment box */
+  if (isSpeedGrader && !activeSGPF) {
+    console.log('attempting SGCP');
+    if (!document.getElementById('speed_grader_comment_textarea'))
+      return false; // element not ready
+    console.log('comment box found');
+    document.getElementById('speed_grader_comment_textarea').ondblclick = function() {
+      if (confirm('Prefill / Refresh?')) {
+        this.value = `Hi ,
+        
+Thanks for submitting, we love you!
+  
+Feedback:
+  So what can we say? Great assignment!
+  
+Feed forward:
+  That said, you can do better!
+  
+Ok Byeeeeeeee ... love your work too.
+
+Love Trevor.`;
+      }
+    }
+    activeSGPF = true;
+  }
+/*    console.log("Prefill: TRUE");
+    document.getElementById('speed_grader_comment_textarea').innerHTML = `Hi ,
+Thanks for submitting, we love you!
+  
+Feedback:
+  So what can we say? Great assignment!
+  
+Feed forward:
+  That said, you can do better!
+  
+Ok Byeeeeeeee ... 
+Love Trevor.`;
+  } else {
+    console.log("Prefill: FALSE");
+  }
+*/  
 
 /* Retired Feature: makes the course navigation and unenrolled students "sticky"
    Magic Numbers: 25px and -0px (nav) works well now but this may change in the future. 
