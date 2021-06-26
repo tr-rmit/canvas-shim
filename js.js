@@ -90,8 +90,9 @@ window.onscroll = function() {
       return false; // element not ready
     console.log('comment box found');
     document.getElementById('speed_grader_comment_textarea').ondblclick = function() {
+      let studFName = document.getElementById('students_selectmenu-button').getElementsByClassName('ui-selectmenu-item-header')[0].innerHTML.trim().split(' ')[0];
       if (confirm('Prefill / Refresh?')) {
-        this.value = `Hi ,
+        this.value = `Hi ${studFName},
         
 Thanks for submitting, we love you!
   
