@@ -84,11 +84,13 @@ window.onscroll = function() {
     }
   }
 /* Prefill Speed grader comment box */
-  if (isSpeedGrader && !activeSGPF) {
+  if (isSpeedGrader) {
     console.log('attempting SGCP');
     if (!document.getElementById('speed_grader_comment_textarea'))
       return false; // element not ready
-    console.log('comment box found');
+    if (typeof document.getElementById('speed_grader_comment_textarea').ondblclick == 'function')
+      return true; // script already set up
+    console.log('inactive comment box found');
     document.getElementById('speed_grader_comment_textarea').ondblclick = function() {
       let studFName = document.getElementById('students_selectmenu-button').getElementsByClassName('ui-selectmenu-item-header')[0].innerHTML.trim().split(' ')[0];
       if (confirm('Prefill / Refresh?')) {
@@ -109,22 +111,6 @@ Love Trevor.`;
     }
     activeSGPF = true;
   }
-/*    console.log("Prefill: TRUE");
-    document.getElementById('speed_grader_comment_textarea').innerHTML = `Hi ,
-Thanks for submitting, we love you!
-  
-Feedback:
-  So what can we say? Great assignment!
-  
-Feed forward:
-  That said, you can do better!
-  
-Ok Byeeeeeeee ... 
-Love Trevor.`;
-  } else {
-    console.log("Prefill: FALSE");
-  }
-*/  
 
 /* Retired Feature: makes the course navigation and unenrolled students "sticky"
    Magic Numbers: 25px and -0px (nav) works well now but this may change in the future. 
