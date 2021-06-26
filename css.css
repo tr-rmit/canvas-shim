@@ -357,6 +357,12 @@ li.graded.ui-selectmenu-hasIcon {
   opacity:0.2;
 }
 
+/* 20210626: Resize short comment box in Speed Grader */
+
+textarea#speed_grader_comment_textarea {
+  min-height:20rem;
+}
+
 /* 20180308: Walkmein widget that gets in the way has stubborn !important styles that make it hard to remove ... */
 #walkme-player {
   clip:rect(0px,0px,0px,0px);;
@@ -436,6 +442,10 @@ div#discussion_subentries article.discussion_entry div.entry-content {
 /* Replies Recursive Indentation */
 div#discussion_subentries ul {
   margin: 0 0 0 10px;
+}
+/* Allow unread badge to grow and fit content */
+span.ic-unread-badge {
+  width: max-content;
 }
 
 /* Move Read / Unread Indicator into Reply Block */
