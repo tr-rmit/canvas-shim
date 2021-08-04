@@ -63,7 +63,7 @@ Below are three types of feedback on your work: feedback, the marking rubric, an
 
 I’ve provided you with feedback about how you have done on this assignment, including a few areas where you have done well and few areas where that could have been strengthened inside the individual comments area in the rubric. This is accompanied with a summative mark reflecting where you have achieved on the marking rubric.  
 
-In addition to this, you will also find feed-forward. In this section are a few tips about how to build upon what you’ve done here in preparation for the next assignment. By providing with you feedback and feed-forward, I hope that you will be better prepared for your final assignment. 
+In addition to this, you will also find feed-forward. In this section are a few tips about how to build upon what you’ve done here in preparation for the next assignment. By providing with you feedback and feed-forward, I hope that you will be better prepared for your next assignment. 
 
 
 Marking Rubric and Feedback:  
@@ -71,7 +71,7 @@ Marking Rubric and Feedback:
 Please make sure to revisit the marking rubric above for the details.
 
 
-Feedforward:  
+Feed Forward:  
 
 
 
