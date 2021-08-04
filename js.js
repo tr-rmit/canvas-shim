@@ -47,17 +47,15 @@ var hFixed=[];
 var activeSGPF = false;
 
 window.ondblclick = function(event) {
-  // console.log(event.srcElement.id);
-  /* Prefill Speed grader comment box */
+  /* Prefill empty Speed Grader comment box */
   if (isSpeedGrader) {
     // console.log('dblclick: speedgrader found');
-    if (event.srcElement.id == 'speed_grader_comment_textarea') {
-      // console.log('dblclick: comment box found');
+    if (event.srcElement.id == 'speed_grader_comment_textarea' && event.srcElement.value.trim() == '') {
+      // console.log('dblclick: empty comment box found');
       let studFName = document.getElementById('students_selectmenu-button').getElementsByClassName('ui-selectmenu-item-header')[0].innerHTML.trim().split(' ')[0];
-      if (confirm('Prefill / Refresh?')) {
-        event.srcElement.value = `Hi ${studFName},
+      event.srcElement.value = `Hi ${studFName},
         
-Thank you for submitting your first assessment.  
+Thank you for submitting your assessment.  
 
 Below are three types of feedback on your work: feedback, the marking rubric, and feedforward. 
 
@@ -71,14 +69,13 @@ Marking Rubric and Feedback:
 Please make sure to revisit the marking rubric above for the details.
 
 
-Feed Forward:  
+Feedforward:  
 
 
 
 Keep up the good work, 
 
 Trevor`;
-      } // confirm prompt
     } // comment box
   } // speedgrader
 } // window.dblclick
