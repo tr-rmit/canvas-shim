@@ -42,9 +42,48 @@ $(function () {
 
 });
 
-/* some "resistant" (dynamic) styles and elements need an event to trigger */
+
 var hFixed=[];
 var activeSGPF = false;
+
+window.ondblclick = function(event) {
+  // console.log(event.srcElement.id);
+  /* Prefill Speed grader comment box */
+  if (isSpeedGrader) {
+    // console.log('dblclick: speedgrader found');
+    if (event.srcElement.id == 'speed_grader_comment_textarea') {
+      // console.log('dblclick: comment box found');
+      let studFName = document.getElementById('students_selectmenu-button').getElementsByClassName('ui-selectmenu-item-header')[0].innerHTML.trim().split(' ')[0];
+      if (confirm('Prefill / Refresh?')) {
+        event.srcElement.value = `Hi ${studFName},
+        
+Thank you for submitting your first assessment.  
+
+Below are three types of feedback on your work: feedback, the marking rubric, and feedforward. 
+
+I’ve provided you with feedback about how you have done on this assignment, including a few areas where you have done well and few areas where that could have been strengthened inside the individual comments area in the rubric. This is accompanied with a summative mark reflecting where you have achieved on the marking rubric.  
+
+In addition to this, you will also find feed-forward. In this section are a few tips about how to build upon what you’ve done here in preparation for the next assignment. By providing with you feedback and feed-forward, I hope that you will be better prepared for your final assignment. 
+
+
+Marking Rubric and Feedback:  
+
+Please make sure to revisit the marking rubric above for the details.
+
+
+Feedforward:  
+
+
+
+Keep up the good work, 
+
+Trevor`;
+      } // confirm prompt
+    } // comment box
+  } // speedgrader
+} // window.dblclick
+
+/* some "resistant" (dynamic) styles and elements need an event to trigger */
 window.onscroll = function() {
   
 // Fix the f*cking headings!
@@ -82,34 +121,6 @@ window.onscroll = function() {
         hFixed[h] = true;
       }      
     }
-  }
-/* Prefill Speed grader comment box */
-  if (isSpeedGrader) {
-    console.log('attempting SGCP');
-    if (!document.getElementById('speed_grader_comment_textarea'))
-      return false; // element not ready
-    if (typeof document.getElementById('speed_grader_comment_textarea').ondblclick == 'function')
-      return true; // script already set up
-    console.log('inactive comment box found');
-    document.getElementById('speed_grader_comment_textarea').ondblclick = function() {
-      let studFName = document.getElementById('students_selectmenu-button').getElementsByClassName('ui-selectmenu-item-header')[0].innerHTML.trim().split(' ')[0];
-      if (confirm('Prefill / Refresh?')) {
-        this.value = `Hi ${studFName},
-        
-Thanks for submitting, we love you!
-  
-Feedback:
-  So what can we say? Great assignment!
-  
-Feed forward:
-  That said, you can do better!
-  
-Ok Byeeeeeeee ... love your work too.
-
-Love Trevor.`;
-      }
-    }
-    activeSGPF = true;
   }
 
 /* Retired Feature: makes the course navigation and unenrolled students "sticky"
