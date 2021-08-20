@@ -134,19 +134,28 @@ window.onscroll = function() {
     uas.style.top=minTop;
   } */
   
-  /* Unassigned Students Feature: forces unenrolled students to be "sticky" */
+  /* Unassigned Students Feature: makes unenrolled students "sticky" */
   var uas = document.getElementsByClassName('unassigned-students');
+  var gas = document.getElementsByClassName('groups')[0];
   if (uas.length>0) {
     // get the last one
     uas = uas[uas.length-1];
     let uasPos = uas.getBoundingClientRect();
     //console.log(uasPos);
-    let uasStartTop = 227; // magic number
-    minTop = Math.max(0,(window.pageYOffset-uasStartTop))+"px";
+    let uasStartTop = 230; // magic number
+    minTop = Math.max(0,(window.pageYOffset-uasStartTop));
     if (uas) {
-      if(uas.style.position != 'relative')
-        uas.style.position = 'relative';
-      uas.style.top=minTop;
+      uas.style.top = "0px";
+      if (minTop > 0) {
+        uas.style.position = 'fixed';
+        gas.style.marginLeft = "255px";
+      }
+      else {
+        uas.style.position = 'static';
+        gas.style.marginLeft = "10px";
+      }
+      console.log(minTop+' '+uas.style.position+' '+uas.style.top);  
+      // uas.style.top=minTop;
     }
   } 
   
