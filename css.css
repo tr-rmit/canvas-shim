@@ -85,14 +85,14 @@ div#not_right_side {
   align-self: flex-start; /* <-- this is the fix */
 }
 
-/* Makes Secondary Items Area (SIA) area a fixed position top right corner, expand on hover.*/
+/* Makes Secondary Items Area (SIA) area a fixed position botttom right corner, expand on hover.*/
 #not_right_side #right-side-wrapper {
   box-sizing: border-box;
   position: fixed;
   z-index: 12 !important;
   overflow-y: hidden;
   padding:2px;
-  top: 0px;
+  bottom: 0px;
   right: 0px;
   text-align: left;
   width: 95px;
@@ -100,8 +100,8 @@ div#not_right_side {
   background-color: #51d2ff38;
   transition: all 0.4s;
   border-color: #51d2ff;
-  border-width: 0px 0px 4px 4px;
-  border-radius: 0px 0px 0px 10px;
+  border-width: 4px 0px 0px 4px;
+  border-radius: 10px 0px 0px 0px;
   border-style: ridge groove groove ridge;
 }
 #not_right_side #right-side-wrapper:hover {
@@ -111,6 +111,7 @@ div#not_right_side {
   width: 280px;
   border-width: 0px 0px 0px 4px;
   border-radius: 0px;
+  background-color: #FFFD;
 }
 
 /* Reduces footprint of CNA and SIA links and makes them 'squarer' too */
@@ -358,9 +359,8 @@ li.graded.ui-selectmenu-hasIcon {
 }
 
 /* 20210626: Resize short comment box in Speed Grader */
-
 textarea#speed_grader_comment_textarea {
-  min-height:20rem;
+  min-height:30rem;
 }
 
 /* 20180308: Walkmein widget that gets in the way has stubborn !important styles that make it hard to remove ... */
