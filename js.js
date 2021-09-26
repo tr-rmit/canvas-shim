@@ -42,14 +42,15 @@ $(function () {
 
 });
 
-
 var hFixed=[];
 var activeSGPF = false;
-
 window.ondblclick = function(event) {
   /* Prefill empty Speed Grader comment box */
   if (isSpeedGrader) {
     // console.log('dblclick: speedgrader found');
+    
+    // open all the feedback boxes in reverse order
+    $($(".react-rubric td:last-child button").get().reverse()).trigger("click");
     if (event.srcElement.id == 'speed_grader_comment_textarea' && event.srcElement.value.trim() == '') {
       // console.log('dblclick: empty comment box found');
       let studFName = document.getElementById('students_selectmenu-button').getElementsByClassName('ui-selectmenu-item-header')[0].innerHTML.trim().split(' ')[0];
