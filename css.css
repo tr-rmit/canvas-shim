@@ -188,6 +188,9 @@ div.customFlash.ic-flash-warning.undefined,
 
 div#gradebook_header_container {
   overflow: visible;
+  position: fixed;
+  top: 25px;
+  z-index: 3;
 }
 
 /* Allows Gradebook marks table to grow on screens larger than 640 x 480 */
@@ -361,6 +364,12 @@ li.graded.ui-selectmenu-hasIcon {
 /* 20210626: Resize short comment box in Speed Grader */
 textarea#speed_grader_comment_textarea {
   min-height:30rem;
+}
+
+/* 20210926: Move cancel button THE FUCK away from save button */
+button.hide_rubric_link.Button {
+  position: absolute;
+  right: 2em;
 }
 
 /* 20180308: Walkmein widget that gets in the way has stubborn !important styles that make it hard to remove ... */
