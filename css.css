@@ -366,8 +366,8 @@ textarea#speed_grader_comment_textarea {
   min-height:30rem;
 }
 
-/* 20210926: Move cancel button THE FUCK away from save button */
-button.hide_rubric_link.Button {
+/* 20210926: Move submit button THE FUCK away from cancel button */
+button.save_rubric_button.Button {
   position: absolute;
   right: 2em;
 }
