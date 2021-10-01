@@ -1,207 +1,633 @@
-/* Canvas JS Shim, by Trevor Reynolds
-   Use in conjunction with Canvas CSS Shim
-   For use in "User Javascript and CSS" Browser addon / plugin
-   Select "https://rmit.instructure.com/courses" to effect just course pages.
+/* Canvas CSS Shim, by Trevor Reynolds
+   Use in conjunction with Canvas JS Shim
+   For use in "User Javascript and CSS" Browser addon / plugin 
+   Select "https://rmit.instructure.com/courses" to effect just course pages.  
 */
 
-/* Get Course Shell number from url for individual styling. */
-var urlArray = window.location.pathname.split("/");
-var courseShell = urlArray[2];
-
-/* Detect if page is speedgrader page. */
-var isSpeedGrader = urlArray[4] ? 
-  urlArray[4].indexOf('speed_grader') === 0 :
-  false;
-
-/* Use courseShell to style each of your courses individually, for example the background, by adding a new case block */
-
-
-switch (courseShell) {
-  
-  case '249': // WP1797
-    document.getElementById('not_right_side').style.background = `repeating-linear-gradient(-45deg,
-        #fff 0px,  #eee 4px, 
-        #fff 8px,  #fff 16px)`;
-    break;
-    
-  case '13846': // WP1810
-    document.getElementById('application').style.backgroundColor = '#fff9f0';
-    break;  
-    
-  default:
-    document.getElementById('not_right_side').style.backgroundColor = 'white';
+/* Reduce oversized text (code) in pre elements */
+pre {
+  font-size: inherit !important;
 }
 
-/* Call when document is ready */
-$(function () {
-  
-  /* Inserts "Student View" link into course navigation */
-  if (document.getElementById('section-tabs')) {
-    document.getElementById('section-tabs').innerHTML+='<li class="section"><a href="/courses/' + courseShell + '/student_view"  rel="nofollow" data-method="post">Student View</a></li>';
-  }
-
-});
-
-window.onclick = function(event) {
-  if (isSpeedGrader) {
-    
-    /* open all the feedback boxes in reverse order */
-    if (event.target.classList.contains("toggle_full_rubric")) {
-      $($(".react-rubric td:last-child button").get().reverse()).trigger("click");
-    }
-    
-  } // speedgrader
-} // window.onclick
-
-var hFixed=[];
-var activeSGPF = false;
-window.ondblclick = function(event) {
-  
-  /* Prefill empty Speed Grader comment box */
-  if (isSpeedGrader) {
-    if (event.srcElement.id == 'speed_grader_comment_textarea' && event.srcElement.value.trim() == '') {
-      let studFName = document.getElementById('students_selectmenu-button').getElementsByClassName('ui-selectmenu-item-header')[0].innerHTML.trim().split(' ')[0];
-      event.srcElement.value = `Hi ${studFName},
-        
-Thank you for submitting your assessment.  
-
-Below are three types of feedback on your work: feedback, the marking rubric, and feedforward. 
-
-I’ve provided you with feedback about how you have done on this assignment, including a few areas where you have done well and few areas where that could have been strengthened inside the individual comments area in the rubric. This is accompanied with a summative mark reflecting where you have achieved on the marking rubric.  
-
-In addition to this, you will also find feed-forward. In this section are a few tips about how to build upon what you’ve done here in preparation for the next assignment. By providing with you feedback and feed-forward, I hope that you will be better prepared for your next assignment. 
-
-
-Marking Rubric and Feedback:  
-
-Please make sure to revisit the marking rubric above for the details.
-
-
-Feedforward:  
-
-
-
-Keep up the good work, 
-
-Trevor`;
-    } // comment box
-    
-  } // speedgrader
-} // window.dblclick
-
-/* some "resistant" (dynamic) styles and elements need an event to trigger */
-window.onscroll = function() {
-  
-// Fix the f*cking headings!
-  let hSizes=["dummy","2rem","1.9rem","1.7rem","1.5rem","1.3rem","1.2rem"];
-  let hColrs=["dummy",
-  "var(--ic-brand-global-nav-menu-item__text-color)",
-  "var(--ic-brand-global-nav-menu-item__text-color)",
-  "var(--ic-brand-global-nav-menu-item__text-color)",
-  "var(--ic-brand-global-nav-menu-item__text-color)",
-  "var(--ic-brand-global-nav-menu-item__text-color)",
-  "var(--ic-brand-global-nav-menu-item__text-color)"];
-  for (let h=1; h<=6; h++) {
-    if (!hFixed[h]) {
-    // Are we on a modules page?
-      let hs = document.getElementsByClassName('show-content')[0];
-    /* If not, are we on a discussions page?
-       20210603 Update: This doesn't work so well
-      if (!hs)
-        hs = document.getElementById('discussion_container'); */
-      if (hs)
-        hs = hs.getElementsByTagName('h'+h);
-      if (hs?.length) {
-        for(tag=0; tag<hs.length; tag++) {
-          console.log(hs[tag].style);
-          if (!hs[tag].classList.contains('banner-title')) {
-            hs[tag].setAttribute('style',
-            'font-family: "Museo500", "Helvetica Neue", Helvetica, Arial, sans-serif !important; ' + 
-            'margin: 0.5em 0em !important; ' +
-            'font-size: '+ hSizes[h] + " !important; " +
-            'color: ' +    hColrs[h] + " !important; " +
-            'font-weight: initial !important; ' +
-            'font-style: initial !important; ');        
-          }
-        }
-        hFixed[h] = true;
-      }      
-    }
-  }
-
-/* Retired Feature: makes the course navigation and unenrolled students "sticky"
-   Magic Numbers: 25px and -0px (nav) works well now but this may change in the future. 
-  var ls = document.getElementById('left-side');
-// wtf? There are two of them?  
-  var uas = document.getElementsByClassName('unassigned-students')[1]; 
-  var minTop = Math.max(-0,(25-window.pageYOffset))+"px";
-  ls.style.top = minTop;
-  minTop = Math.max(0,(window.pageYOffset-270))+"px";
-  if (uas) {
-    if(uas.style.position != 'relative')
-      uas.style.position = 'relative';
-    uas.style.top=minTop;
-  } */
-  
-  /* Unassigned Students Feature: makes unenrolled students "sticky" */
-  var uas = document.getElementsByClassName('unassigned-students');
-  var gas = document.getElementsByClassName('groups')[0];
-  if (uas.length>0) {
-    // get the last one
-    uas = uas[uas.length-1];
-    let uasPos = uas.getBoundingClientRect();
-    //console.log(uasPos);
-    let uasStartTop = 230; // magic number
-    minTop = Math.max(0,(window.pageYOffset-uasStartTop));
-    if (uas) {
-      uas.style.top = "0px";
-      if (minTop > 0) {
-        uas.style.position = 'fixed';
-        gas.style.marginLeft = "255px";
-      }
-      else {
-        uas.style.position = 'static';
-        gas.style.marginLeft = "10px";
-      }
-      console.log(minTop+' '+uas.style.position+' '+uas.style.top);  
-      // uas.style.top=minTop;
-    }
-  } 
-  
-  // Remove brs to increase realestate in groups area
-  var tags = document.getElementsByClassName('show-group-full');
-  if (tags.length) 
-    for(let i=0; i<tags.length; i++)
-      tags[i].parentNode.removeChild(tags[i]);
-      
-// Remove ellipses
-  tags = document.getElementsByClassName('ellipsis');
-  tagslen = tags.length;
-  if (tags.length) {
-    for(let i=0; i<tagslen; i++) {
-      tags[i].style.textOverflow='clip';
-    }
-  }
-  
-  /* Dropdown box hard width override : WIP */
-  if (document.getElementById('students_selectmenu-button'))
-    document.getElementById('students_selectmenu-button').style.width = 'fit-content';
-  
+body {
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center; 
+  --ic-brand-global-nav-ic-icon-svg-fill--active: #A11;
+  --ic-brand-global-nav-ic-icon-svg-fill: #07E;
+  --ic-link-color: #07E;
+  --ic-ltgr-color: #CCC;
 }
 
-/* 20210521 Shelved: Speed Grader: Replace long description pop up link with actual long description text, unfortunately the long descriptions aren't in the document, suspect they are requested one by one
-var rh = document.getElementById("rubric_holder");
-if (rh) {
-  console.log("rubric_holder found");
-  // look for long desriptions
-  vldt = setInterval(function() {
-    vld = rubric_holder.querySelectorAll("div.long-description");
-    console.log(vld);
-    if (vld.length > 0) {
-      clearTimeout(vldt);
-      cld = document.querySelectorAll("span[aria-label='Criterion Long Description']");
-      console.log(cld);
-    }
-  }, 1000);
+body a {
+  color: var(--ic-link-color);
+}
+
+#breadcrumbs,
+.header-bar {
+  background-color: rgba(0,0,0,0);
+}
+
+/* 20191020: Nav links dopegrade fix */
+nav #section-tabs i.nav-icon.icon-off {
+  position: absolute;
+  right: 15px;
+  color: var(--ic-ltgr-color);
+  transform: scale(0.7); 
+}
+/* Transparent elements, no BG color set */
+div.entry-content {
+  background-color: white;
+}
+
+/* Allows content to grow on screens larger than 640 x 480 */
+#content-wrapper {
+  width:100% !important;
+  max-width: 100% !important;
+  height: auto;
+}
+
+/* Allows main content area to grow on screens larger than 640 x 480 */
+#not_right_side {
+  max-width: calc(100% - 24px);  
+}
+
+/* 20200628: New styles needed to get #main children aligned */
+/* Makes Course Navigation Area (CNA) fixed position elements */
+/* 20200628: Updates to restore positioning and stickiness in WP2037 */
+
+div.ic-app-course-menu, 
+div#main {
+  margin-left:0px;
+  padding:5px 3px;
+  display:flex;
+}
+
+div#left-side {
+  width:180px;
+  max-width:180px;
+  box-sizing: border-box;
+  display: flex;
+  position: -webkit-sticky; /* for Safari */
+  position: sticky;
+  top: 0;
+  align-self: flex-start; /* <-- this is the fix */
+}
+
+div#left-side.ic-app-course-menu.list-view li {
+  width: calc(100% - 10px);
+}
+
+div#not_right_side {
+  width: calc(100% - 200px);
+  max-width: calc(100% - 200px);
+  display: flex;
+  box-sizing: border-box;
+  align-self: flex-start; /* <-- this is the fix */
+}
+
+/* Makes Secondary Items Area (SIA) area a fixed position botttom right corner, expand on hover.*/
+#not_right_side #right-side-wrapper {
+  box-sizing: border-box;
+  position: fixed;
+  z-index: 12 !important;
+  overflow-y: hidden;
+  padding:2px;
+  bottom: 0px;
+  right: 0px;
+  text-align: left;
+  width: 95px;
+  height: 40px;
+  background-color: #51d2ff38;
+  transition: all 0.4s;
+  border-color: #51d2ff;
+  border-width: 4px 0px 0px 4px;
+  border-radius: 10px 0px 0px 0px;
+  border-style: ridge groove groove ridge;
+}
+#not_right_side #right-side-wrapper:hover {
+  height:100vh;
+  background-color: #f6f5f666;
+  overflow-y: auto;
+  width: 280px;
+  border-width: 0px 0px 0px 4px;
+  border-radius: 0px;
+  background-color: #FFFD;
+}
+
+/* Reduces footprint of CNA and SIA links and makes them 'squarer' too */
+#left-side li.section a,
+#course_show_secondary a,
+#course_show_secondary button {
+  border-radius: 5px;
+  border: 1px var(--ic-ltgr-color) solid;
+  padding:3px 20px 2px;
+  margin: 1px;
+  color: black;
+  background-color: white;
+}
+
+#left-side li.section a.active {
+  color:white;
+  background-color: var(--ic-brand-global-nav-ic-icon-svg-fill--active);
+}
+
+#left-side li.section a:hover {
+  color: black;
+  background-color: var(--ic-ltgr-color);
+  text-decoration: none;
+}
+
+.left-side * {
+  box-sizing: border-box;
+}
+
+div.menu-item__text,
+div.menu-item__text::after {
+  z-index:1000;
+}
+
+/* Moves pop-down search to the left so that navigation is not covered */
+#discussion-toolbar .headerBar {
+  left: 180px;
+}
+
+/* Removes the elipsed CNA course description
+  20200628: extra styles applied: display:none not working, alt hide approach */
+#section-tabs-header-subtitle {
+  visibility: hidden;
+  position: absolute;
+}
+
+/* Make modules hover state light green to match */
+div.ig-list .ig-row:hover {
+  background-color: #efe;
+}
+
+
+/* Please go away ...
+- racing car flags
+- rubric triangles and 
+- rubric marked/selected cell bars 
+- other helpful stuffs that take up room or gets in the way */
+.walkme-in-wrapper,
+.ui-widget-content .gradebook-tooltip,
+div.discussions-v2__container-image,
+div.shader.meetsMasteryShader,
+div.shader.nearMasteryShader,
+div.shader.wellBelowMasteryShader,
+div#replacement_notice_mount_point,
+div.customFlash.ic-flash-warning.undefined,
+#content div.prompt-banner.CES_SP4_2019,
+.triangle {
+  display:none;
+}
+
+/******** All Grade Center Styles ********/
+
+div#gradebook_header_container {
+  overflow: visible;
+  position: fixed;
+  top: 25px;
+  z-index: 3;
+}
+
+/* Allows Gradebook marks table to grow on screens larger than 640 x 480 */
+#gradebook_wrapper {
+	width:calc(100vw - 100px);
+}
+div#gradebook-toolbar {
+  display: inline-flex;
+}
+
+/* 20181021: Grade center table squashed, restoring full width and moving comment button */
+.react-rubric table {
+  table-layout: auto;
+}
+.react-rubric table tr th.rubric-criteria {
+  width:300px;
+}
+.react-rubric table tr th.rubric-points {
+  width:150px;
+}
+.react-rubric table tr td.criterion_points div:nth-child(2) {
+  height:0px;
+}
+.react-rubric table tr td.criterion_points button {
+  border: 1px var(--ic-ltgr-color) solid;
+  position: relative;
+  bottom: 38px;
+  left: 70px;
+  background-color: #fffd;
+}
+
+/* 20210520: Grade center ratings description getting crushed by obese criteria, not showing line feeds; these issues fixed */
+table.rubric_table td.criterion_description {
+  width: 25%;
+  min-width: 200px;
+}
+span.description.description_title,
+div.description.react-rubric-cell span {
+  white-space: pre-line;
+  display: inline-block; 
+}
+span.description.description_title::first-line,
+div.description.react-rubric-cell span::first-line {
+  font-weight: bold;
+}
+
+/* Makes room for browser search box in Speed Grader */
+body.grades.ic-no-flex-layout { 
+  margin-top: 50px;
+}  
+body.grades.ic-no-flex-layout div#full_width_container { 
+  margin-top: 10px;
+} 
+
+/* Stops content collision in Speed Grader */
+#content #full_width_container {
+  top:6.5em;
+}
+
+/* Reduces uneccessary scroll bar in ... Speed Grader? */
+#left_side_inner {
+  height: calc(100% - 2px) !important;
+}
+
+/* Sets marking area to 90% in Speed Grader */
+#full_width_container #right_side {
+  width:90%;
+}
+
+/* Rubric edit also squashed */
+#assignment_show, #rubrics {
+  width: calc(100vw - 350px);
+}
+/* Ratings space not shared equally beyond column 5, removing arbitrary 20% width */
+table.ratings td.rating {
+  width: inherit;
+}
+
+/* Grade center cell tweaks: whitespace and order */
+div.Grid__GradeCell__StartContainer:first-child {
+  display: none;
+}
+div.Grid__GradeCell__Content {
+  margin-left:25px;
+}
+div.Grid__GradeCell__Content span.Grade {
+  display: inline-block;
+  width: 40px;
+  text-align: center;
+}
+
+/* Dropdown box hard width override : WIP */
+#students_selectmenu a#students_selectmenu-button {
+  width: fit-content !important;
+  background-color: #f99;
+}
+
+/* Speedy grader link */
+div.Grid__GradeCell__Options {
+  background-color:#cee8f9;
+  width:25px;
+  position:absolute;
+  left:0px;
+}
+
+/* Rework rubric selected/mastery cells */
+div.rating-tier.selected {
+  background-color:#0994;
+}
+
+/* Grade Center Beta Styles*/
+#gradebook-toolbar .gradebook-menus {
+  margin-left: 300px;
+}
+#search-filter-container {
+  position: absolute;
+  left:0px;
+}
+div.student-name {
+  font-size: 12px;
+}
+div.secondary-info {
+  font-size: 14px;
+  padding: 2px;
+}
+
+/* make speed grader drop down larger and tighten up padding inside */
+#students_selectmenu-menu {
+  height: calc(100vh - 110px) !important;
+  max-height: initial !important;
+}
+#students_selectmenu-menu li.ui-selectmenu-hasIcon {
+  padding: 0px;
+}
+
+/* make non submitted students smaller and right shifted */
+li.not_submitted.ui-selectmenu-hasIcon {
+  transform: 
+    scale(0.66)
+    translateX(35px);
+  transform-origin: 0px 50%;
+  width:150%;
+}
+
+/* make marked students smaller and right shifted */
+li.graded.ui-selectmenu-hasIcon {
+  transform: 
+    scale(0.66)
+    translateX(35px);
+  transform-origin: 0px 50%;
+  width:150%;
+}
+
+/* Grade center notes column popup shift shrink translucencify */
+.dontblur {
+  opacity: 0.7;
+  transform: scale(0.316);
+  transform-origin: 0px 0px;
+}
+.dontblur textarea,
+.dontblur button
+{
+  font-size: 316%;
+  line-height:1.2;
+  opacity: 1;
+}
+.ui-widget-overlay {
+  opacity:0.2;
+}
+
+/* 20210626: Resize short comment box in Speed Grader */
+textarea#speed_grader_comment_textarea {
+  min-height:30rem;
+}
+
+/* 20210930: Make the useful buttons in rubric wider */
+#rubric_holder button.save_rubric_button.Button {
+  width: 100%;
+  margin-bottom: 5px;
+}
+div.ic-Action-header > div.ic-Action-header__Primary {
+  flex-grow: 0;
+}
+div.ic-Action-header > div.ic-Action-header__Primary > * {
+  display: inline-block;
+}
+div.ic-Action-header__Secondary {
+  display: inline-block;
+  flex-grow: 1;
+}
+button#comment_submit_button.Button {
+  width: calc(100%);
+}
+button.toggle_full_rubric.edit.btn {
+  width: 100%;
+}
+div#rubric_assessments_list_and_edit_button_holder div.button-container {
+  width: 100%;
+}
+
+
+/* 20180308: Walkmein widget that gets in the way has stubborn !important styles that make it hard to remove ... */
+#walkme-player {
+  clip:rect(0px,0px,0px,0px);;
+}
+
+/* Removes rubric "lightbox" background so markers can scroll the document when marking. */
+.ui-widget-overlay {
+  display: none;
+}
+
+/* 20210521 Shelved: Speed Grader: Replace long description pop up link with actual long description text
+.long_description_link {
+  display:none; 
+  border: dotted red 2px;
+}
+div.long-description {
+  border: 2px dotted red;
+  padding:5px;
+} 
+div.long-description span {
+  border: 2px dotted green;
+  padding:5px;
+}
+span[aria-label="Criterion Long Description"] {
+  border: 2px dotted purple;
+  padding:5px;
 }
 */
+
+/******** End Grade Center Styles ********/
+
+
+
+/******** All Discussion Board Styles ********/
+
+/* All Discussion Entries Container */
+div#discussion_subentries {
+  padding:0px;
+  margin-top:20px;
+}
+
+/* All Discussion Entries List */
+div#discussion_subentries > ul.discussion-entries {
+  margin:0px;
+}
+
+/* Single Conversation and Replies Block */
+div#discussion_subentries > ul.discussion-entries > li.entry {
+  padding:15px 0px 0px 0px;
+  margin: 15px 0px 0px 0px;
+  border-top: 4px dotted #dc291e;
+}
+
+/* Starting Conversation */
+div#discussion_subentries > ul.discussion-entries > li.entry > article.discussion_entry > div.entry-content {
+  background-color:#F3F9FF;
+}
+
+/* Remove Border on Mid Nested Containers  */
+div#discussion_subentries li.entry {
+  border-width: 0px;
+}
+
+/* Single Reply Block in a Conversation */
+div#discussion_subentries article.discussion_entry {
+  border: 1px solid var(--ic-ltgr-color);
+  border-left-width:10px;
+  padding: 0px;
+  margin: 0px 0px 1px 0px;
+}
+
+/* Dynamic Style Override: Content Inside Single Reply Block */
+div#discussion_subentries article.discussion_entry div.entry-content {
+  padding-left:20px !important;
+}
+
+/* Replies Recursive Indentation */
+div#discussion_subentries ul {
+  margin: 0 0 0 10px;
+}
+/* Allow unread badge to grow and fit content */
+span.ic-unread-badge {
+  width: max-content;
+}
+
+/* Move Read / Unread Indicator into Reply Block */
+a.discussion-read-state-btn {
+  position: absolute;
+  left:0px;
+}
+
+/* Make Read / Unread Indicator more visible */
+div.discussion-read-state,
+.read div.discussion-read-state {
+  width: 30px;
+  height:30px;
+  top:-17px; 
+  left:-13px;
+  border-radius: 0 0 30px 0;
+  border-color: var(--ic-ltgr-color);
+}
+
+/* Discussion titles crunch fix */
+.ic-discussion-content-container > span > span > span:first-child {
+  flex: unset;
+  width: calc(100% - 85px);
+}
+.ic-discussion-content-container > span > span > span:last-child {
+  flex: unset;
+  width: 85px;
+}
+.discussion-availability.ic-item-row__content-col.ic-discussion-row__content {
+  width: 290px;
+  position: absolute;
+  left: 50px;
+  bottom: 0px;
+  font-size: 80%;
+  text-align: left;
+}
+
+/******** End Discussion Board Styles ********/
+
+
+
+/******** All Groups Allocation Styles ********/
+
+/* Tightenup up groups layout, release realestate 
+   UPDATE: Layout conflict, sticky broken, now done with js */
+div.unassigned-students {	
+  position: sticky;	
+  top: 0px;
+  float: initial;
+}
+div.unassigned-students > div {
+  min-width:200px !important;
+}
+div.ui-cnvs-scrollable {
+  height:calc(100vh - 160px) !important;
+}
+div.group-user-name.ellipsis {
+  text-overflow: clip;
+  max-width: calc(100% - 22px);
+}
+.group-user.ui-draggable {
+  max-width: 100%;
+  font-size: 9pt;
+  padding: 0px;
+  line-height: 25px;
+  margin-bottom:1px;
+}
+.group div.group-users ul.collectionViewItems {
+  overflow: initial;
+}
+.collectionViewItems.groups-list li {
+  padding: 0.5em 0;
+}
+
+/* People: assigning students crush fix */  
+div.group-category-contents > div.row-fluid 
+{
+  display: flex;
+}
+div.group-category-contents > 
+ div.row-fluid > div.unassigned-students.ui-droppable
+{
+  width: clamp(245px, 245px, 245px);
+}
+div.row-fluid div.span9.groups {
+  width: calc(100vw - 600px);
+  margin-left: 0px;
+}
+.group div.group-users {
+  margin-top:0px;
+}
+.group .group-users ul.collectionViewItems {
+  width: calc(100% - 5px);
+  overflow: auto;
+  columns: 240px;
+  column-gap: 2px;
+}
+ul.collectionViewItems li.group-user {
+  padding: 0px;
+  margin: 0px 0px 2px 0px;
+ 
+}
+/* allocated students */
+.group li.group-user {
+  width:calc(100% - 2px);
+  display: inline-block;
+}
+/* Columns causing bad li internal reflow */
+.group li.group-user div.group-user-name {
+  display: inline-block;
+  max-height:22px;
+}
+
+/******** End Groups Allocation Styles ********/
+
+
+
+
+/* Quiz Styles */
+.answer_arrow.info {
+  background-color: #00ac18;
+  right: 5px;
+  left: auto !important;
+  border-radius: 5px;
+  color:white !important;
+  padding:0px 10px;
+}
+.answer_arrow.info,
+.answer_arrow.info::before,
+.answer_arrow.info::after
+{
+  background-size: 0px 0px;
+}
+.answer.correct_answer {
+  background-color:#e5ffe8;
+}
+.answer input[type=text] {
+  width: calc(100% - 150px);
+}
+
+/* Emble Editor: oversize and overlap fix */
+#emble-interface {
+  padding: 5px;
+  transform-origin: 0 0;
+  transform: scale(0.8);
+  position: sticky;
+  transition: 0.2s;
+  height: 150px;
+  box-shadow: 0px 0px 1px 2px var(--ic-ltgr-color);
+  overflow: hidden;
+}
+#emble-interface:hover {
+  height: calc( (100vh - 150px) / 0.8);
+}
+
+
+/* debug */
