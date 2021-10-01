@@ -4,7 +4,7 @@ https://chrome.google.com/webstore/detail/user-javascript-and-css/nbhcbdghjpllgm
 
 ## Directions
 Open the extension, you will see two panes in a split window
-![Where to put code: Javascript pane on left, CSS pane on right](/Where\ to\ put\ code.png)
+![Where to put code: Javascript pane on left, CSS pane on right](//github.com/tr-rmit/canvas-shim/blob/master/Where%20to%20put%20code.png)
 
 - Paste the CSS from css.css into the CSS pane
 - Paste the Javascript from js.js into the Javascript pane
