@@ -47,19 +47,13 @@ div.entry-content {
   height: auto;
 }
 
-/* Allows main content area to grow on screens larger than 640 x 480 */
-#not_right_side {
-  max-width: calc(100% - 24px);  
-}
-
 /* 20200628: New styles needed to get #main children aligned */
 /* Makes Course Navigation Area (CNA) fixed position elements */
 /* 20200628: Updates to restore positioning and stickiness in WP2037 */
 
 div.ic-app-course-menu, 
 div#main {
-  margin-left:0px;
-  padding:5px 3px;
+  margin: 0px 2px;
   display:flex;
 }
 
@@ -73,14 +67,19 @@ div#left-side {
   top: 0;
   align-self: flex-start; /* <-- this is the fix */
 }
+/* 20211018: Canvas new sticky and padding override */
+div.ic-sticky-frame {
+  padding:2px;
+  position: static;
+}
 
 div#left-side.ic-app-course-menu.list-view li {
-  width: calc(100% - 10px);
+  /* width: calc(100% - 10px); */
 }
 
 div#not_right_side {
-  width: calc(100% - 200px);
-  max-width: calc(100% - 200px);
+  /*width: calc(100% - 200px);
+    max-width: calc(100% - 200px); */
   display: flex;
   box-sizing: border-box;
   align-self: flex-start; /* <-- this is the fix */
@@ -164,6 +163,11 @@ div.ig-list .ig-row:hover {
   background-color: #efe;
 }
 
+/* Assignment_Show width is same as parent, content is clipped */
+
+div#assignment_show {
+  width:100%;
+}
 
 /* Please go away ...
 - racing car flags
@@ -199,7 +203,12 @@ div#gradebook_header_container {
 div#gradebook-toolbar {
   display: inline-flex;
 }
-
+div#gradebook-toolbar div.gradebook-menus {
+  margin-left:5px;
+}
+div#gradebook-actions {
+  white-space: normal; 
+}
 /* 20181021: Grade center table squashed, restoring full width and moving comment button */
 .react-rubric table {
   table-layout: auto;
@@ -223,7 +232,7 @@ div#gradebook-toolbar {
 
 /* 20210520: Grade center ratings description getting crushed by obese criteria, not showing line feeds; these issues fixed */
 table.rubric_table td.criterion_description {
-  width: 25%;
+  /* width: 25%; */
   min-width: 200px;
 }
 span.description.description_title,
@@ -265,7 +274,9 @@ body.grades.ic-no-flex-layout div#full_width_container {
 }
 /* Ratings space not shared equally beyond column 5, removing arbitrary 20% width */
 table.ratings td.rating {
-  width: inherit;
+  /* width: inherit; */
+  overflow-y: auto;
+  height: fit-content;
 }
 
 /* Grade center cell tweaks: whitespace and order */
@@ -628,6 +639,3 @@ ul.collectionViewItems li.group-user {
 #emble-interface:hover {
   height: calc( (100vh - 150px) / 0.8);
 }
-
-
-/* debug */
