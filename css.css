@@ -164,9 +164,13 @@ div.ig-list .ig-row:hover {
 }
 
 /* Assignment_Show width is same as parent, content is clipped */
-
 div#assignment_show {
   width:100%;
+}
+
+/* RHS slide in link editor too narrow */
+.fLzZc_bQpq.fLzZc_doqw, .fLzZc_bxia.fLzZc_doqw {
+  min-width: 50vw;
 }
 
 /* Please go away ...
@@ -268,6 +272,11 @@ body.grades.ic-no-flex-layout div#full_width_container {
   width:90%;
 }
 
+/* Student and assignment dropdown filters too wide */
+div#gradebook_app + div {
+  display: inline-flex !important;
+}
+
 /* Rubric edit also squashed */
 #assignment_show, #rubrics {
   width: calc(100vw - 350px);
@@ -290,6 +299,10 @@ div.Grid__GradeCell__Content span.Grade {
   display: inline-block;
   width: 40px;
   text-align: center;
+}
+/* Stange indent for student names */
+div.student-name {
+  padding-left:0;
 }
 
 /* Dropdown box hard width override : WIP */
@@ -399,6 +412,11 @@ button.toggle_full_rubric.edit.btn {
 }
 div#rubric_assessments_list_and_edit_button_holder div.button-container {
   width: 100%;
+}
+
+/* Disable curve marks submit button, outside form for some reason */
+form#curve_grade_dialog + div {
+  display:none;
 }
 
 
@@ -591,6 +609,7 @@ ul.collectionViewItems li.group-user {
 .group li.group-user {
   width:calc(100% - 2px);
   display: inline-block;
+  float: none;
 }
 /* Columns causing bad li internal reflow */
 .group li.group-user div.group-user-name {
