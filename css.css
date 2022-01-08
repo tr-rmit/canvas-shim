@@ -173,6 +173,12 @@ div#assignment_show {
   min-width: 50vw;
 }
 
+/* Pages editor: Canvas sets tiny-mce editor height to just 400px at run time, !important override to a more practical height */
+div.tox-tinymce {
+    height: calc(100vh - 435px) !important;  
+}
+
+
 /* Please go away ...
 - racing car flags
 - rubric triangles and 
