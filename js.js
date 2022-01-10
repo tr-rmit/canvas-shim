@@ -34,7 +34,7 @@ switch (courseShell) {
 
 /* Call when document is ready */
 $(function () {
-  
+  console.log("Trev: doc ready");
   /* Inserts "Student View" link into course navigation */
   if (document.getElementById('section-tabs')) {
     document.getElementById('section-tabs').innerHTML+='<li class="section"><a href="/courses/' + courseShell + '/student_view"  rel="nofollow" data-method="post">Student View</a></li>';
@@ -43,6 +43,7 @@ $(function () {
 });
 
 window.onclick = function(event) {
+  console.log("Trev: onclick");
   if (isSpeedGrader) {
     
     /* open all the feedback boxes in reverse order */
@@ -56,7 +57,7 @@ window.onclick = function(event) {
 var hFixed=[];
 var activeSGPF = false;
 window.ondblclick = function(event) {
-  
+    console.log("Trev: ondblclick");
   /* Prefill empty Speed Grader comment box */
   if (isSpeedGrader) {
     if (event.srcElement.id == 'speed_grader_comment_textarea' && event.srcElement.value.trim() == '') {
@@ -64,25 +65,25 @@ window.ondblclick = function(event) {
       event.srcElement.value = `Hi ${studFName},
         
 Thank you for submitting your assessment.  
+Included are three types of feedback on your work: 
+  1) feedback, 
+  2) the marking rubric, and 
+  3) feedforward. 
 
-Below are three types of feedback on your work: feedback, the marking rubric, and feedforward. 
+I’ve provided you with feedback about how you have done on this assignment, including a few areas where you have done well and few areas where that could have been strengthened inside the individual comments area in the marking rubric above. This is accompanied with a summative mark reflecting where you have achieved on the marking rubric.  
 
-I’ve provided you with feedback about how you have done on this assignment, including a few areas where you have done well and few areas where that could have been strengthened inside the individual comments area in the rubric. This is accompanied with a summative mark reflecting where you have achieved on the marking rubric.  
+In addition to this, you will find feed-forward below. In this section are a few tips about how to build upon what you’ve done here in preparation for the next assignment. By providing with you feedback and feed-forward, I hope that you will be better prepared for your next assignment. 
 
-In addition to this, you will also find feed-forward. In this section are a few tips about how to build upon what you’ve done here in preparation for the next assignment. By providing with you feedback and feed-forward, I hope that you will be better prepared for your next assignment. 
+Feedback:
 
-
-Marking Rubric and Feedback:  
-
-Please make sure to revisit the marking rubric above for the details.
 
 
 Feedforward:  
 
 
 
-Keep up the good work, 
 
+Keep up the good work, 
 Trevor`;
     } // comment box
     
@@ -91,7 +92,7 @@ Trevor`;
 
 /* some "resistant" (dynamic) styles and elements need an event to trigger */
 window.onscroll = function() {
-  
+  console.log("Trev: onscroll");
 // Fix the f*cking headings!
   let hSizes=["dummy","2rem","1.9rem","1.7rem","1.5rem","1.3rem","1.2rem"];
   let hColrs=["dummy",
