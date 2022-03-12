@@ -145,29 +145,61 @@ window.onscroll = function() {
   } */
   
   /* Unassigned Students Feature: makes unenrolled students "sticky" */
-  var uas = document.getElementsByClassName('unassigned-students');
-  var gas = document.getElementsByClassName('groups')[0];
-  if (uas.length>0) {
-    // get the last one
-    uas = uas[uas.length-1];
-    let uasPos = uas.getBoundingClientRect();
-    //console.log(uasPos);
-    let uasStartTop = 230; // magic number
-    minTop = Math.max(0,(window.pageYOffset-uasStartTop));
-    if (uas) {
-      uas.style.top = "0px";
-      if (minTop > 0) {
-        uas.style.position = 'fixed';
-        gas.style.marginLeft = "255px";
-      }
-      else {
-        uas.style.position = 'static';
-        gas.style.marginLeft = "10px";
-      }
-      console.log(minTop+' '+uas.style.position+' '+uas.style.top);  
-      // uas.style.top=minTop;
-    }
-  } 
+  
+  // var gct = document.querySelector('div#group_categories_tabs');
+  // if(gct) {
+  //   console.log(gct.style);
+  //   let gctStartTop = 330; // magic number
+  //   minTop = Math.max(0,(window.pageYOffset-gctStartTop));
+  //   console.log(minTop);
+  //   if (minTop > 0) {
+  //     gct.style.marginTop = minTop+'px';
+  //   }
+  //   else {
+  //     gct.style.marginTop = '0px';
+  //   }
+  // }
+  //elf1.style.backgroundColor = "#f99";
+
+  // if (gct.getBoundingClientRect().y < 0) {
+  //   elf1.style.position = "fixed";
+  //   elf1.style.top = "0px";
+  //     console.log("< 0");
+  // } else {
+  //   elf1.style.backgroundColor = "#FFF0";
+  //   elf1.style.position = "static";
+  //   elf1.style.top = "0px";
+  //         console.log("> 0");
+  // }
+  // for (let ix=1; ix < elf1.length; ix++) { 
+  //   console.log(elf1[ix].getBoundingClientRect());
+  // }
+  
+  // var uas = document.querySelector('.group-category-contents > .row-fluid > .unassigned-students');
+  // var gas = document.querySelector('.group-category-contents > .row-fluid > .groups');
+  // uas.style.color = "#f66";
+  // gas.style.color="#f66";
+  // if (uas.length>0) {
+  //   // get the last one
+  //   uas = uas[uas.length-1];
+  //   let uasPos = uas.getBoundingClientRect();
+  //   //console.log(uasPos);
+  //   let uasStartTop = 230; // magic number
+  //   minTop = Math.max(0,(window.pageYOffset-uasStartTop));
+  //   if (uas) {
+  //     uas.style.top = "0px";
+  //     if (minTop > 0) {
+  //       uas.style.position = 'fixed';
+  //       gas.style.marginLeft = "255px";
+  //     }
+  //     else {
+  //       uas.style.position = 'static';
+  //       gas.style.marginLeft = "10px";
+  //     }
+  //     console.log(minTop+' '+uas.style.position+' '+uas.style.top);  
+  //     // uas.style.top=minTop;
+  //   }
+  // } 
   
   // Remove brs to increase realestate in groups area
   var tags = document.getElementsByClassName('show-group-full');
