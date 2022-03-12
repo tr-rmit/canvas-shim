@@ -551,18 +551,29 @@ div.discussion-read-state,
 
 /******** All Groups Allocation Styles ********/
 
-/* Tightenup up groups layout, release realestate 
-   UPDATE: Layout conflict, sticky broken, now done with js */
-div.unassigned-students {	
-  position: sticky;	
+/* Cleanup layout, place students and groups on one page */
+
+div#group_categories_tabs  {
+  position: sticky;
   top: 0px;
-  float: initial;
+  height: calc(100vh - 110px);
+  overflow-y: clip;
 }
+
+div#group_categories_tabs div.unassigned-students {	
+  float: initial;
+  height: calc(100vh - 260px);
+  overflow-y: scroll;
+}
+div#group_categories_tabs div.unassigned-students + div {
+  /*border: purple solid 2px;*/
+  height: calc(100vh - 260px);
+  overflow-y: scroll;
+}
+
+/* Tightenup up groups layout, release realestate */
 div.unassigned-students > div {
   min-width:200px !important;
-}
-div.ui-cnvs-scrollable {
-  height:calc(100vh - 160px) !important;
 }
 div.group-user-name.ellipsis {
   text-overflow: clip;
@@ -575,6 +586,10 @@ div.group-user-name.ellipsis {
   line-height: 25px;
   margin-bottom:1px;
 }
+div.ui-cnvs-scrollable {
+  overflow-y: initial;
+  height: initial !important;
+}
 .group div.group-users ul.collectionViewItems {
   overflow: initial;
 }
@@ -586,11 +601,11 @@ div.group-user-name.ellipsis {
 div.group-category-contents > div.row-fluid 
 {
   display: flex;
+  column-gap: 10px;
 }
-div.group-category-contents > 
- div.row-fluid > div.unassigned-students.ui-droppable
+div.group-category-contents > div.row-fluid > div.unassigned-students.ui-droppable
 {
-  width: clamp(245px, 245px, 245px);
+  width: clamp(300px, 300px, 300px);
 }
 div.row-fluid div.span9.groups {
   width: calc(100vw - 600px);
