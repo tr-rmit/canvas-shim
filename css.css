@@ -557,7 +557,7 @@ div#group_categories_tabs  {
   position: sticky;
   top: 0px;
   height: calc(100vh - 110px);
-  overflow-y: clip;
+  /* overflow-y: clip; <-- 20220403: Cant scroll to see all people. */
 }
 
 div#group_categories_tabs div.unassigned-students {	
