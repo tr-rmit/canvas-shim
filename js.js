@@ -102,7 +102,7 @@ window.onscroll = function() {
   "var(--ic-brand-global-nav-menu-item__text-color)",
   "var(--ic-brand-global-nav-menu-item__text-color)",
   "var(--ic-brand-global-nav-menu-item__text-color)"];
-  for (let h=1; h<=6; h++) {
+  for (let h=1; h<=6; h++) { 
     if (!hFixed[h]) {
     // Are we on a modules page?
       let hs = document.getElementsByClassName('show-content')[0];
@@ -120,7 +120,7 @@ window.onscroll = function() {
             'font-family: "Museo500", "Helvetica Neue", Helvetica, Arial, sans-serif !important; ' + 
             'margin: 0.5em 0em !important; ' +
             'font-size: '+ hSizes[h] + " !important; " +
-            'color: ' +    hColrs[h] + " !important; " +
+            // 20200426: Remove color change 'color: ' +    hColrs[h] + " !important; " +
             'font-weight: initial !important; ' +
             'font-style: initial !important; ');        
           }
