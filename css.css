@@ -4,6 +4,11 @@
    Select "https://rmit.instructure.com/courses" to effect just course pages.  
 */
 
+/* Transitions too slow, turn off */
+:root {
+  transition: 1ms;
+}
+
 /* Reduce oversized text (code) in pre elements */
 pre {
   font-size: inherit !important;
@@ -21,6 +26,15 @@ body {
 
 body a {
   color: var(--ic-link-color);
+}
+
+/* 20220514: Poor icon contrast */
+#application svg {
+  fill: var(--ic-brand-global-nav-ic-icon-svg-fill); 
+}
+span.menu-item__badge {
+  color: white;
+  background-color: var(--ic-brand-global-nav-ic-icon-svg-fill--active);
 }
 
 #breadcrumbs,
@@ -58,8 +72,8 @@ div#main {
 }
 
 div#left-side {
-  width:180px;
-  max-width:180px;
+  width:200px;
+  max-width:200px;
   box-sizing: border-box;
   display: flex;
   position: -webkit-sticky; /* for Safari */
@@ -68,11 +82,14 @@ div#left-side {
   align-self: flex-start; /* <-- this is the fix */
 }
 /* 20211018: Canvas new sticky and padding override */
+/* 20220330: More override! */
 div.ic-sticky-frame {
   padding:2px;
   position: static;
 }
-
+div#sticky-container {
+  padding: 2px;
+}
 div#left-side.ic-app-course-menu.list-view li {
   /* width: calc(100% - 10px); */
 }
@@ -170,7 +187,8 @@ div#assignment_show {
 
 /* RHS slide in link editor too narrow */
 .fLzZc_bQpq.fLzZc_doqw, .fLzZc_bxia.fLzZc_doqw {
-  min-width: 50vw;
+  width: 50vw;
+  max-width: 600px;
 }
 
 /* Pages editor: Canvas sets tiny-mce editor height to just 400px at run time, !important override to a more practical height in all but the discussion threads */
@@ -202,8 +220,8 @@ nav#gradebook_header_container {
   overflow: visible;
   position: fixed;
   top: 25px;
+  right:200px;
   z-index: 3;
-  width: 99vw;	
 }
 
 /* Allows Gradebook marks table to grow on screens larger than 640 x 480 */
@@ -273,9 +291,9 @@ body.grades.ic-no-flex-layout div#full_width_container {
   height: calc(100% - 2px) !important;
 }
 
-/* Sets marking area to 90% in Speed Grader */
+/* Sets rubric marking area to 90% in Speed Grader */
 #full_width_container #right_side {
-  width:90%;
+  width: 50%; /* 90% */
 }
 
 /* Student and assignment dropdown filters too wide */
@@ -558,7 +576,7 @@ div#group_categories_tabs  {
   position: sticky;
   top: 0px;
   height: calc(100vh - 110px);
-  /* overflow-y: clip; <-- 20220403: Cant scroll to see all people. */
+  /* overflow-y: clip; stopping scroll load */
 }
 
 div#group_categories_tabs div.unassigned-students {	
