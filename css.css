@@ -14,13 +14,15 @@ pre {
   font-size: inherit !important;
 }
 
+/* 20220621: RMIT using brand(?) dark blue and not cyan for icons */
 body {
   background-size: cover;
   background-attachment: fixed;
   background-position: center; 
   --ic-brand-global-nav-ic-icon-svg-fill--active: #A11;
-  --ic-brand-global-nav-ic-icon-svg-fill: #07E;
-  --ic-link-color: #07E;
+  --ic-brand-global-nav-logo-bgd: #A11;
+  --ic-brand-global-nav-ic-icon-svg-fill: #000054;
+  --ic-link-color: #000054;
   --ic-ltgr-color: #CCC;
 }
 
@@ -200,9 +202,11 @@ div#assignment_show {
 - racing car flags
 - rubric triangles and 
 - rubric marked/selected cell bars 
+- unfixed grade centre bug warnings
 - other helpful stuffs that take up room or gets in the way */
 .walkme-in-wrapper,
 .ui-widget-content .gradebook-tooltip,
+.ic-flash-warning.progressiveAlert,
 div.discussions-v2__container-image,
 div.shader.meetsMasteryShader,
 div.shader.nearMasteryShader,
