@@ -14,26 +14,40 @@ pre {
   font-size: inherit !important;
 }
 
-/* 20220621: RMIT using brand(?) dark blue and not cyan for icons */
+/* 20220621: RMIT brand red too bright, not everything uses RMIT brand navy */
 body {
   background-size: cover;
   background-attachment: fixed;
   background-position: center; 
   --ic-brand-global-nav-ic-icon-svg-fill--active: #A11;
   --ic-brand-global-nav-logo-bgd: #A11;
+  --enRcg-dangerColor: #A11;
   --ic-brand-global-nav-ic-icon-svg-fill: #000054;
   --ic-link-color: #000054;
   --ic-ltgr-color: #CCC;
+  --tr-bg-color: #fffff3;
 }
 
 body a {
   color: var(--ic-link-color);
 }
 
+#application {
+  background-color: var(--tr-bg-color);
+}
+
 /* 20220514: Poor icon contrast */
 #application svg {
   fill: var(--ic-brand-global-nav-ic-icon-svg-fill); 
 }
+/* 20220625: Someone decided to stick in !important non-var values */
+body li.ic-app-header__menu-list-item--active div.menu-item-icon-container svg {
+  fill: var(--ic-brand-global-nav-ic-icon-svg-fill--active) !important;
+}
+body li.ic-app-header__menu-list-item--active div.menu-item__text {
+  color: var(--ic-brand-global-nav-ic-icon-svg-fill--active) !important;
+}
+
 span.menu-item__badge {
   color: white;
   background-color: var(--ic-brand-global-nav-ic-icon-svg-fill--active);
@@ -54,6 +68,12 @@ nav #section-tabs i.nav-icon.icon-off {
 /* Transparent elements, no BG color set */
 div.entry-content {
   background-color: white;
+}
+
+
+/* 20220625: Some kludger is having a fun 'CK' day */
+body:not(.full-width):not(.outcomes):not(.body--login-confirmation) div.ic-Layout-wrapper {
+  max-width: initial;
 }
 
 /* Allows content to grow on screens larger than 640 x 480 */
@@ -97,8 +117,7 @@ div#left-side.ic-app-course-menu.list-view li {
 }
 
 div#not_right_side {
-  /*width: calc(100% - 200px);
-    max-width: calc(100% - 200px); */
+  background-color: transparent !important;  
   display: flex;
   box-sizing: border-box;
   align-self: flex-start; /* <-- this is the fix */
@@ -108,29 +127,23 @@ div#not_right_side {
 #not_right_side #right-side-wrapper {
   box-sizing: border-box;
   position: fixed;
+  bottom:0px;
   z-index: 12 !important;
   overflow-y: hidden;
   padding:2px;
-  bottom: 0px;
-  right: 0px;
+  left: calc(100vw - 30px);
   text-align: left;
-  width: 95px;
-  height: 40px;
-  background-color: #51d2ff38;
   transition: all 0.4s;
+  background-color: white;
   border-color: #51d2ff;
   border-width: 4px 0px 0px 4px;
   border-radius: 10px 0px 0px 0px;
   border-style: ridge groove groove ridge;
 }
 #not_right_side #right-side-wrapper:hover {
-  height:100vh;
-  background-color: #f6f5f666;
   overflow-y: auto;
-  width: 280px;
-  border-width: 0px 0px 0px 4px;
+  left: calc(100vw - 300px);
   border-radius: 0px;
-  background-color: #FFFD;
 }
 
 /* Reduces footprint of CNA and SIA links and makes them 'squarer' too */
