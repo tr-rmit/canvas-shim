@@ -25,7 +25,7 @@ body {
   --ic-brand-global-nav-ic-icon-svg-fill: #000054;
   --ic-link-color: #000054;
   --ic-ltgr-color: #CCC;
-  --tr-bg-color: #fffff3;
+  --tr-bg-color: #ffffff;
 }
 
 body a {
@@ -243,7 +243,7 @@ nav#gradebook_header_container {
 
 /* Allows Gradebook marks table to grow on screens larger than 640 x 480 */
 #gradebook_wrapper {
-	width:calc(100vw - 100px);
+	width:calc(100vw - 125px);
 }
 div#gradebook-toolbar {
   display: inline-flex;
