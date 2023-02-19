@@ -14,7 +14,7 @@ pre {
   font-size: inherit !important;
 }
 
-/* 20220621: RMIT brand red too bright, not everything uses RMIT brand navy */
+/* 20220621: RMIT brand red too bright, not everything uses RMIT brand navy, RMIT brand cyan has poor WAG2.0 */
 body {
   background-size: cover;
   background-attachment: fixed;
@@ -26,6 +26,7 @@ body {
   --ic-link-color: #000054;
   --ic-ltgr-color: #CCC;
   --tr-bg-color: #ffffff;
+  --fbyHH-color: #000054;
 }
 
 body a {
