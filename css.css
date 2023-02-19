@@ -219,7 +219,7 @@ div#assignment_show {
 - other helpful stuffs that take up room or gets in the way */
 .walkme-in-wrapper,
 .ui-widget-content .gradebook-tooltip,
-.ic-flash-warning.progressiveAlert,
+div.ic-flash-warning.progressiveAlert, 
 div.discussions-v2__container-image,
 div.shader.meetsMasteryShader,
 div.shader.nearMasteryShader,
@@ -231,55 +231,60 @@ div.customFlash.ic-flash-warning.undefined,
   display:none;
 }
 
-/******** All Grade Center Styles ********/
+/******** All Grade Center & Rubric Styles ********/
+/* 20230219: Recent updates are conflicting with these styles, but many issues seem to have been fixed so much may be redundant */
 
-nav#gradebook_header_container {
-  overflow: visible;
-  position: fixed;
-  top: 25px;
-  right:200px;
-  z-index: 3;
+/* 20230219: Keeps dropdowns to a reasonable size and left aligned. */
+div#gradebook-toolbar,
+div#gradebook_app {
+  display: flex;
+  width: fit-content;
 }
+
+/*nav#gradebook_header_container {*/
+/*  overflow: visible;*/
+/*  position: fixed;*/
+/*  top: 25px;*/
+/*  right:200px;*/
+/*  z-index: 3;*/
+/*}*/
 
 /* Allows Gradebook marks table to grow on screens larger than 640 x 480 */
-#gradebook_wrapper {
-	width:calc(100vw - 125px);
-}
-div#gradebook-toolbar {
-  display: inline-flex;
-}
-div#gradebook-toolbar div.gradebook-menus {
-  margin-left:5px;
-}
-div#gradebook-actions {
-  white-space: normal; 
-}
+/*#gradebook_wrapper {*/
+/*	width:calc(100vw - 125px);*/
+/*}*/
+/*div#gradebook-toolbar div.gradebook-menus {*/
+/*  margin-left:5px;*/
+/*}*/
+/*div#gradebook-actions {*/
+/*  white-space: normal; */
+/*}*/
 /* 20181021: Grade center table squashed, restoring full width and moving comment button */
-.react-rubric table {
-  table-layout: auto;
-}
-.react-rubric table tr th.rubric-criteria {
-  width:300px;
-}
-.react-rubric table tr th.rubric-points {
-  width:150px;
-}
-.react-rubric table tr td.criterion_points div:nth-child(2) {
-  height:0px;
-}
-.react-rubric table tr td.criterion_points button {
-  border: 1px var(--ic-ltgr-color) solid;
-  position: relative;
-  bottom: 38px;
-  left: 70px;
-  background-color: #fffd;
-}
+/*.react-rubric table {*/
+/*  table-layout: auto;*/
+/*}*/
+/*.react-rubric table tr th.rubric-criteria {*/
+/*  width:300px;*/
+/*}*/
+/*.react-rubric table tr th.rubric-points {*/
+/*  width:150px;*/
+/*}*/
+/*.react-rubric table tr td.criterion_points div:nth-child(2) {*/
+/*  height:0px;*/
+/*}*/
+/*.react-rubric table tr td.criterion_points button {*/
+/*  border: 1px var(--ic-ltgr-color) solid;*/
+/*  position: relative;*/
+/*  bottom: 38px;*/
+/*  left: 70px;*/
+/*  background-color: #fffd;*/
+/*}*/
 
 /* 20210520: Grade center ratings description getting crushed by obese criteria, not showing line feeds; these issues fixed */
-table.rubric_table td.criterion_description {
+/*table.rubric_table td.criterion_description {*/
   /* width: 25%; */
-  min-width: 200px;
-}
+/*  min-width: 200px;*/
+/*}*/
 span.description.description_title,
 div.description.react-rubric-cell span {
   white-space: pre-line;
@@ -290,7 +295,7 @@ div.description.react-rubric-cell span::first-line {
   font-weight: bold;
 }
 
-/* Makes room for browser search box in Speed Grader */
+/* Makes room to search for students in browser search box in Speed Grader */
 body.grades.ic-no-flex-layout { 
   margin-top: 50px;
 }  
@@ -299,52 +304,52 @@ body.grades.ic-no-flex-layout div#full_width_container {
 } 
 
 /* Stops content collision in Speed Grader */
-#content #full_width_container {
-  top:6.5em;
-}
+/*#content #full_width_container {*/
+/*  top:6.5em;*/
+/*}*/
 
 /* Reduces uneccessary scroll bar in ... Speed Grader? */
-#left_side_inner {
-  height: calc(100% - 2px) !important;
-}
+/*#left_side_inner {*/
+/*  height: calc(100% - 2px) !important;*/
+/*}*/
 
-/* Sets rubric marking area to 90% in Speed Grader */
+/* Reduces submission area from 90% to 50% in Speed Grader */
 #full_width_container #right_side {
-  width: 50%; /* 90% */
+  width: 50%; /* was 90% */
 }
 
 /* Student and assignment dropdown filters too wide */
-div#gradebook_app + div {
-  display: inline-flex !important;
-}
+/*div#gradebook_app + div {*/
+/*  display: inline-flex !important;*/
+/*}*/
 
 /* Rubric edit also squashed */
-#assignment_show, #rubrics {
-  width: calc(100vw - 350px);
-}
+/*#assignment_show, #rubrics {*/
+/*  width: calc(100vw - 350px);*/
+/*}*/
 /* Ratings space not shared equally beyond column 5, removing arbitrary 20% width */
-table.ratings td.rating {
+/*table.ratings td.rating {*/
   /* width: inherit; */
-  overflow-y: auto;
-  height: fit-content;
-}
+/*  overflow-y: auto;*/
+/*  height: fit-content;*/
+/*}*/
 
 /* Grade center cell tweaks: whitespace and order */
-div.Grid__GradeCell__StartContainer:first-child {
-  display: none;
-}
-div.Grid__GradeCell__Content {
-  margin-left:25px;
-}
-div.Grid__GradeCell__Content span.Grade {
-  display: inline-block;
-  width: 40px;
-  text-align: center;
-}
+/*div.Grid__GradeCell__StartContainer:first-child {*/
+/*  display: none;*/
+/*}*/
+/*div.Grid__GradeCell__Content {*/
+/*  margin-left:25px;*/
+/*}*/
+/*div.Grid__GradeCell__Content span.Grade {*/
+/*  display: inline-block;*/
+/*  width: 40px;*/
+/*  text-align: center;*/
+/*}*/
 /* Stange indent for student names */
-div.student-name {
-  padding-left:0;
-}
+/*div.student-name {*/
+/*  padding-left:0;*/
+/*}*/
 
 /* Dropdown box hard width override : WIP */
 #students_selectmenu a#students_selectmenu-button {
@@ -353,35 +358,35 @@ div.student-name {
 }
 
 /* Speedy grader link */
-div.Grid__GradeCell__Options {
-  background-color:#cee8f9;
-  width:25px;
-  position:absolute;
-  left:0px;
-}
+/*div.Grid__GradeCell__Options {*/
+/*  background-color:#cee8f9;*/
+/*  width:25px;*/
+/*  position:absolute;*/
+/*  left:0px;*/
+/*}*/
 
-/* Rework rubric selected/mastery cells */
+/* Make whole rubric selected/mastery cells cyan*/
 div.rating-tier.selected {
   background-color:#0994;
 }
 
 /* Grade Center Beta Styles*/
-#gradebook-toolbar .gradebook-menus {
-  margin-left: 300px;
-}
-#search-filter-container {
-  position: absolute;
-  left:0px;
-}
-div.student-name {
-  font-size: 12px;
-}
-div.secondary-info {
-  font-size: 14px;
-  padding: 2px;
-}
+/*#gradebook-toolbar .gradebook-menus {*/
+/*  margin-left: 300px;*/
+/*}*/
+/*#search-filter-container {*/
+/*  position: absolute;*/
+/*  left:0px;*/
+/*}*/
+/*div.student-name {*/
+/*  font-size: 12px;*/
+/*}*/
+/*div.secondary-info {*/
+/*  font-size: 14px;*/
+/*  padding: 2px;*/
+/*}*/
 
-/* make speed grader drop down larger and tighten up padding inside */
+/* Speed Grader students drop down list, make it longer and tighten up padding inside */
 #students_selectmenu-menu {
   height: calc(100vh - 110px) !important;
   max-height: initial !important;
@@ -408,22 +413,24 @@ li.graded.ui-selectmenu-hasIcon {
   width:150%;
 }
 
-/* Grade center notes column popup shift shrink translucencify */
-.dontblur {
-  opacity: 0.7;
-  transform: scale(0.316);
-  transform-origin: 0px 0px;
-}
-.dontblur textarea,
-.dontblur button
-{
-  font-size: 316%;
-  line-height:1.2;
-  opacity: 1;
-}
-.ui-widget-overlay {
-  opacity:0.2;
-}
+/* 20230219: New "inline" styles overriding notes column, will need javascript solution
+   Grade center notes column popup shift shrink translucencify */
+/*.dontblur {*/
+/*  opacity: 0.7;*/
+  /*transform: scale(0.316) !important;*/
+/*  transform-origin: 0px 0px !important;*/
+/*}*/
+/* 
+.dontblur textarea,*/
+/*.dontblur button*/
+/*{*/
+  /*font-size: 316%;*/
+  /*line-height:1.2;*/
+/*  background-color: #FFF4;*/
+/*}*/
+/*.ui-widget-overlay {*/
+/*  opacity:0.2;*/
+/*}*/
 
 /* 20210626: Resize short comment box in Speed Grader */
 textarea#speed_grader_comment_textarea {
@@ -431,7 +438,8 @@ textarea#speed_grader_comment_textarea {
 }
 
 /* 20210930: Make the useful buttons in rubric wider */
-#rubric_holder button.save_rubric_button.Button {
+#rubric_holder button.save_rubric_button.Button,
+button#comment_submit_button.Button {
   width: 100%;
   margin-bottom: 5px;
 }
@@ -461,7 +469,7 @@ form#curve_grade_dialog + div {
 }
 
 
-/* 20180308: Walkmein widget that gets in the way has stubborn !important styles that make it hard to remove ... */
+/*20180308: Walkmein widget that gets in the way has stubborn !important styles that make it hard to remove ... */
 #walkme-player {
   clip:rect(0px,0px,0px,0px);;
 }
