@@ -241,51 +241,11 @@ div#gradebook_app {
   display: flex;
   width: fit-content;
 }
+/* 20230629: To clear browser search box */
+nav#gradebook_header_container {
+ padding-top: 35px;
+}
 
-/*nav#gradebook_header_container {*/
-/*  overflow: visible;*/
-/*  position: fixed;*/
-/*  top: 25px;*/
-/*  right:200px;*/
-/*  z-index: 3;*/
-/*}*/
-
-/* Allows Gradebook marks table to grow on screens larger than 640 x 480 */
-/*#gradebook_wrapper {*/
-/*	width:calc(100vw - 125px);*/
-/*}*/
-/*div#gradebook-toolbar div.gradebook-menus {*/
-/*  margin-left:5px;*/
-/*}*/
-/*div#gradebook-actions {*/
-/*  white-space: normal; */
-/*}*/
-/* 20181021: Grade center table squashed, restoring full width and moving comment button */
-/*.react-rubric table {*/
-/*  table-layout: auto;*/
-/*}*/
-/*.react-rubric table tr th.rubric-criteria {*/
-/*  width:300px;*/
-/*}*/
-/*.react-rubric table tr th.rubric-points {*/
-/*  width:150px;*/
-/*}*/
-/*.react-rubric table tr td.criterion_points div:nth-child(2) {*/
-/*  height:0px;*/
-/*}*/
-/*.react-rubric table tr td.criterion_points button {*/
-/*  border: 1px var(--ic-ltgr-color) solid;*/
-/*  position: relative;*/
-/*  bottom: 38px;*/
-/*  left: 70px;*/
-/*  background-color: #fffd;*/
-/*}*/
-
-/* 20210520: Grade center ratings description getting crushed by obese criteria, not showing line feeds; these issues fixed */
-/*table.rubric_table td.criterion_description {*/
-  /* width: 25%; */
-/*  min-width: 200px;*/
-/*}*/
 span.description.description_title,
 div.description.react-rubric-cell span {
   white-space: pre-line;
@@ -304,53 +264,10 @@ body.grades.ic-no-flex-layout div#full_width_container {
   margin-top: 10px;
 } 
 
-/* Stops content collision in Speed Grader */
-/*#content #full_width_container {*/
-/*  top:6.5em;*/
-/*}*/
-
-/* Reduces uneccessary scroll bar in ... Speed Grader? */
-/*#left_side_inner {*/
-/*  height: calc(100% - 2px) !important;*/
-/*}*/
-
 /* Reduces submission area from 90% to 50% in Speed Grader */
 #full_width_container #right_side {
   width: 50%; /* was 90% */
 }
-
-/* Student and assignment dropdown filters too wide */
-/*div#gradebook_app + div {*/
-/*  display: inline-flex !important;*/
-/*}*/
-
-/* Rubric edit also squashed */
-/*#assignment_show, #rubrics {*/
-/*  width: calc(100vw - 350px);*/
-/*}*/
-/* Ratings space not shared equally beyond column 5, removing arbitrary 20% width */
-/*table.ratings td.rating {*/
-  /* width: inherit; */
-/*  overflow-y: auto;*/
-/*  height: fit-content;*/
-/*}*/
-
-/* Grade center cell tweaks: whitespace and order */
-/*div.Grid__GradeCell__StartContainer:first-child {*/
-/*  display: none;*/
-/*}*/
-/*div.Grid__GradeCell__Content {*/
-/*  margin-left:25px;*/
-/*}*/
-/*div.Grid__GradeCell__Content span.Grade {*/
-/*  display: inline-block;*/
-/*  width: 40px;*/
-/*  text-align: center;*/
-/*}*/
-/* Stange indent for student names */
-/*div.student-name {*/
-/*  padding-left:0;*/
-/*}*/
 
 /* Dropdown box hard width override : WIP */
 #students_selectmenu a#students_selectmenu-button {
@@ -358,34 +275,10 @@ body.grades.ic-no-flex-layout div#full_width_container {
   background-color: #f99;
 }
 
-/* Speedy grader link */
-/*div.Grid__GradeCell__Options {*/
-/*  background-color:#cee8f9;*/
-/*  width:25px;*/
-/*  position:absolute;*/
-/*  left:0px;*/
-/*}*/
-
 /* Make whole rubric selected/mastery cells cyan*/
 div.rating-tier.selected {
   background-color:#0994;
 }
-
-/* Grade Center Beta Styles*/
-/*#gradebook-toolbar .gradebook-menus {*/
-/*  margin-left: 300px;*/
-/*}*/
-/*#search-filter-container {*/
-/*  position: absolute;*/
-/*  left:0px;*/
-/*}*/
-/*div.student-name {*/
-/*  font-size: 12px;*/
-/*}*/
-/*div.secondary-info {*/
-/*  font-size: 14px;*/
-/*  padding: 2px;*/
-/*}*/
 
 /* Speed Grader students drop down list, make it longer and tighten up padding inside */
 #students_selectmenu-menu {
@@ -413,25 +306,6 @@ li.graded.ui-selectmenu-hasIcon {
   transform-origin: 0px 50%;
   width:150%;
 }
-
-/* 20230219: New "inline" styles overriding notes column, will need javascript solution
-   Grade center notes column popup shift shrink translucencify */
-/*.dontblur {*/
-/*  opacity: 0.7;*/
-  /*transform: scale(0.316) !important;*/
-/*  transform-origin: 0px 0px !important;*/
-/*}*/
-/* 
-.dontblur textarea,*/
-/*.dontblur button*/
-/*{*/
-  /*font-size: 316%;*/
-  /*line-height:1.2;*/
-/*  background-color: #FFF4;*/
-/*}*/
-/*.ui-widget-overlay {*/
-/*  opacity:0.2;*/
-/*}*/
 
 /* 20210626: Resize short comment box in Speed Grader */
 textarea#speed_grader_comment_textarea {
@@ -469,7 +343,6 @@ form#curve_grade_dialog + div {
   display:none;
 }
 
-
 /*20180308: Walkmein widget that gets in the way has stubborn !important styles that make it hard to remove ... */
 #walkme-player {
   clip:rect(0px,0px,0px,0px);;
@@ -479,25 +352,6 @@ form#curve_grade_dialog + div {
 .ui-widget-overlay {
   display: none;
 }
-
-/* 20210521 Shelved: Speed Grader: Replace long description pop up link with actual long description text
-.long_description_link {
-  display:none; 
-  border: dotted red 2px;
-}
-div.long-description {
-  border: 2px dotted red;
-  padding:5px;
-} 
-div.long-description span {
-  border: 2px dotted green;
-  padding:5px;
-}
-span[aria-label="Criterion Long Description"] {
-  border: 2px dotted purple;
-  padding:5px;
-}
-*/
 
 /******** End Grade Center Styles ********/
 
