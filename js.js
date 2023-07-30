@@ -15,85 +15,88 @@ var isSpeedGrader = urlArray[4] ?
 
 /* Use courseShell to style each of your courses individually, for example the background, by adding a new case block */
 
-
+/*
 switch (courseShell) {
   
   case '249': // WP1797
-    document.getElementById('not_right_side').style.background = `repeating-linear-gradient(-45deg,
-        #fff 0px,  #eee 4px, 
-        #fff 8px,  #fff 16px)`;
+  case '95590': // PS2202
+    document.getElementById('application').style.background = `repeating-linear-gradient(-45deg,
+        #fff 0px,  #fff 14px, 
+        #efefef 14px,  #efefef 16px)`;
     break;
-    
+  case '92574': // WP2250v
+    document.getElementById('application').style.background = `repeating-linear-gradient(-45deg,
+        #fff 0px,  #fff 14px, 
+        #dfefff 14px,  #dfefff 16px)`;
+    break;
   case '13846': // WP1810
-    document.getElementById('application').style.backgroundColor = '#fff9f0';
+  case '96724': // WP2237
+    document.getElementById('application').style.background = `repeating-linear-gradient(-45deg,
+        #fff 0px,  #fff 14px, 
+        #ffefef 14px,  #ffefef 16px)`;
     break;  
     
   default:
-    document.getElementById('not_right_side').style.backgroundColor = 'white';
+    document.getElementById('application').style.backgroundColor = 'var(--tr-bg-color)';
 }
-
-/* Call when document is ready */
-$(function () {
-  console.log("Trev: doc ready");
-  /* Inserts "Student View" link into course navigation */
-  if (document.getElementById('section-tabs')) {
-    document.getElementById('section-tabs').innerHTML+='<li class="section"><a href="/courses/' + courseShell + '/student_view"  rel="nofollow" data-method="post">Student View</a></li>';
-  }
-
-});
-
-window.onclick = function(event) {
-  console.log("Trev: onclick");
-  if (isSpeedGrader) {
-    
-    /* open all the feedback boxes in reverse order */
-    if (event.target.classList.contains("toggle_full_rubric")) {
-      $($(".react-rubric td:last-child button").get().reverse()).trigger("click");
-    }
-    
-  } // speedgrader
-} // window.onclick
+*/
 
 var hFixed=[];
 var activeSGPF = false;
 window.ondblclick = function(event) {
-    console.log("Trev: ondblclick");
+  console.log("Trev: ondblclick");
   /* Prefill empty Speed Grader comment box */
   if (isSpeedGrader) {
     if (event.srcElement.id == 'speed_grader_comment_textarea' && event.srcElement.value.trim() == '') {
       let studFName = document.getElementById('students_selectmenu-button').getElementsByClassName('ui-selectmenu-item-header')[0].innerHTML.trim().split(' ')[0];
       event.srcElement.value = `Hi ${studFName},
         
-Thank you for submitting your assessment.  
-Included are three types of feedback on your work: 
-  1) feedback, 
-  2) the marking rubric, and 
-  3) feedforward. 
+Thank you for submitting your assessment. 
+Unfortunately there is an issue are some issues preventing us from marking your assignment:
 
-I’ve provided you with feedback about how you have done on this assignment, including a few areas where you have done well and few areas where that could have been strengthened inside the individual comments area in the marking rubric above. This is accompanied with a summative mark reflecting where you have achieved on the marking rubric.  
+- No website is available on Coreteaching servers.
+- We are unable to access your GitHub, please register your non-sid username in the form provided in the Canvas assignment header area, and make sure that superfluffy kittenz is added as a collaborator.
+- Your GitHub repository is not private.
+- Your version on GitHub does not match your version on Coreteaching.
+- Files are not protected with .htaccess.
+- Your code does not pass validation, check your code in the nu validator.
+- "Insert your name here" is an instruction.
+- Your profile image is too large, it must be physically 200px x 200px (ie "on disk"), and it must be named avatar.png.
 
-In addition to this, you will find feed-forward below. In this section are a few tips about how to build upon what you’ve done here in preparation for the next assignment. By providing with you feedback and feed-forward, I hope that you will be better prepared for your next assignment. 
+Fix this up these things and send me an email when you are ready for re-grading. Sama and I are happy to catch up with you need assistance for a 1 on 1.
 
-Feedback:
-
-
-
-Feedforward:  
-
-
-
-
-Keep up the good work, 
-Trevor`;
+Trevor.`;
     } // comment box
     
   } // speedgrader
 } // window.dblclick
 
-/* some "resistant" (dynamic) styles and elements need an event to trigger */
-window.onscroll = function() {
-  console.log("Trev: onscroll");
-// Fix the f*cking headings!
+
+/* Call when document is ready 
+   20230325: Putting all "need serious delay" styles in delayedLoad, KLUDGE: load event not working, using click event instead 
+*/
+window.addEventListener('click', delayedLoad);
+
+/* 20230325: Not working / responding, kludge fix above
+window.addEventListener('load', function() {
+  console.log("Doc ready "+Date.now());
+  setTimeout(delayedLoad, 10000);
+}); */
+
+
+/* 20230325: Some "resistant" (dynamic) styles and elements need a delayed "afterload" event to take effect, called when document is ready */
+function delayedLoad() {
+  
+  console.log("delayedLoad " + Date.now());
+  
+  /* 20230415: Script is generating multiple buttons, removing feature for now
+     Inserts "Student View" link into course navigation 
+  if (document.getElementById('section-tabs')) {
+    document.getElementById('section-tabs').innerHTML+='<li class="section"><a href="/courses/' + courseShell + '/student_view"  rel="nofollow" data-method="post">Student View</a></li>';
+  }
+  */
+  
+  /* Fix the f*cking headings! */
   let hSizes=["dummy","2rem","1.9rem","1.7rem","1.5rem","1.3rem","1.2rem"];
   let hColrs=["dummy",
   "var(--ic-brand-global-nav-menu-item__text-color)",
@@ -129,77 +132,20 @@ window.onscroll = function() {
       }      
     }
   }
+  
+  if (isSpeedGrader) {
+    
+    /* open all the feedback boxes in reverse order */
+    if (event.target.classList.contains("toggle_full_rubric")) {
+      $($(".react-rubric td:last-child button").get().reverse()).trigger("click");
+    }
+  
+    /* make quiz comment boxes larger and usable */
+    let head = $("#speedgrader_iframe").contents().find("head");
+    let css = '<style>div.quiz_comment {width: calc(100% - 90px); } div.quiz_comment textarea { width: calc(100% - 20px) !important; height: 100px !important; }</style>';
+    $(head).append(css);
 
-/* Retired Feature: makes the course navigation and unenrolled students "sticky"
-   Magic Numbers: 25px and -0px (nav) works well now but this may change in the future. 
-  var ls = document.getElementById('left-side');
-// wtf? There are two of them?  
-  var uas = document.getElementsByClassName('unassigned-students')[1]; 
-  var minTop = Math.max(-0,(25-window.pageYOffset))+"px";
-  ls.style.top = minTop;
-  minTop = Math.max(0,(window.pageYOffset-270))+"px";
-  if (uas) {
-    if(uas.style.position != 'relative')
-      uas.style.position = 'relative';
-    uas.style.top=minTop;
-  } */
-  
-  /* Unassigned Students Feature: makes unenrolled students "sticky" */
-  
-  // var gct = document.querySelector('div#group_categories_tabs');
-  // if(gct) {
-  //   console.log(gct.style);
-  //   let gctStartTop = 330; // magic number
-  //   minTop = Math.max(0,(window.pageYOffset-gctStartTop));
-  //   console.log(minTop);
-  //   if (minTop > 0) {
-  //     gct.style.marginTop = minTop+'px';
-  //   }
-  //   else {
-  //     gct.style.marginTop = '0px';
-  //   }
-  // }
-  //elf1.style.backgroundColor = "#f99";
-
-  // if (gct.getBoundingClientRect().y < 0) {
-  //   elf1.style.position = "fixed";
-  //   elf1.style.top = "0px";
-  //     console.log("< 0");
-  // } else {
-  //   elf1.style.backgroundColor = "#FFF0";
-  //   elf1.style.position = "static";
-  //   elf1.style.top = "0px";
-  //         console.log("> 0");
-  // }
-  // for (let ix=1; ix < elf1.length; ix++) { 
-  //   console.log(elf1[ix].getBoundingClientRect());
-  // }
-  
-  // var uas = document.querySelector('.group-category-contents > .row-fluid > .unassigned-students');
-  // var gas = document.querySelector('.group-category-contents > .row-fluid > .groups');
-  // uas.style.color = "#f66";
-  // gas.style.color="#f66";
-  // if (uas.length>0) {
-  //   // get the last one
-  //   uas = uas[uas.length-1];
-  //   let uasPos = uas.getBoundingClientRect();
-  //   //console.log(uasPos);
-  //   let uasStartTop = 230; // magic number
-  //   minTop = Math.max(0,(window.pageYOffset-uasStartTop));
-  //   if (uas) {
-  //     uas.style.top = "0px";
-  //     if (minTop > 0) {
-  //       uas.style.position = 'fixed';
-  //       gas.style.marginLeft = "255px";
-  //     }
-  //     else {
-  //       uas.style.position = 'static';
-  //       gas.style.marginLeft = "10px";
-  //     }
-  //     console.log(minTop+' '+uas.style.position+' '+uas.style.top);  
-  //     // uas.style.top=minTop;
-  //   }
-  // } 
+  } // speedgrader
   
   // Remove brs to increase realestate in groups area
   var tags = document.getElementsByClassName('show-group-full');
@@ -207,7 +153,7 @@ window.onscroll = function() {
     for(let i=0; i<tags.length; i++)
       tags[i].parentNode.removeChild(tags[i]);
       
-// Remove ellipses
+  // Remove ellipses
   tags = document.getElementsByClassName('ellipsis');
   tagslen = tags.length;
   if (tags.length) {
@@ -221,20 +167,3 @@ window.onscroll = function() {
     document.getElementById('students_selectmenu-button').style.width = 'fit-content';
   
 }
-
-/* 20210521 Shelved: Speed Grader: Replace long description pop up link with actual long description text, unfortunately the long descriptions aren't in the document, suspect they are requested one by one
-var rh = document.getElementById("rubric_holder");
-if (rh) {
-  console.log("rubric_holder found");
-  // look for long desriptions
-  vldt = setInterval(function() {
-    vld = rubric_holder.querySelectorAll("div.long-description");
-    console.log(vld);
-    if (vld.length > 0) {
-      clearTimeout(vldt);
-      cld = document.querySelectorAll("span[aria-label='Criterion Long Description']");
-      console.log(cld);
-    }
-  }, 1000);
-}
-*/
