@@ -1,0 +1,19 @@
+@media print, screen and (min-width: 64em) {
+  main {
+    margin-left: 380px;
+    margin-right: 20rem !important;
+  }
+  .offcanvas-open.detatched-open main {
+    margin-right: 20rem;
+  }
+  
+  main > div:nth-of-type(3n).side-panels {
+    width:0px;
+  }
+  .offcanvas-open.detatched-open  main > div:nth-of-type(3n) {
+    left: 0px;
+    top: 0px;
+    width: initial;
+  }
+
+}
