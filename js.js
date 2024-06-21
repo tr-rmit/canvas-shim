@@ -74,10 +74,10 @@ Trevor.`;
 
 /* Call when document is ready 
    20230325: Putting all "need serious delay" styles in delayedLoad
-   20240621: 1 second delay after load seems to work
+   20240621: 1 ... nope, 2 second delay after load seems to work
 */
 window.addEventListener('load', function() {
-  setTimeout(delayedLoad, 1000);
+  setTimeout(delayedLoad, 2000);
 });
 
 /* 20230325: Some "resistant" (dynamic) styles and elements need a delayed "afterload" event to take effect, called when document is ready */
