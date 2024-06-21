@@ -27,6 +27,7 @@ body {
   --ic-ltgr-color: #CCC;
   --tr-bg-color: #ffffff;
   --fbyHH-color: #000054;
+  --fLzZc-smallWidth: 50vw;
 }
 
 body a {
@@ -311,6 +312,14 @@ li.graded.ui-selectmenu-hasIcon {
 textarea#speed_grader_comment_textarea {
   min-height:30rem;
 }
+div.quiz_comment {
+  display: block !important;
+  width:100%;
+}
+/* 20231128: Remove gap between mark and speedgrader link in mark cell */
+div.Grid__GradeCell__EndContainer > span.Grid__GradeCell__EndText {
+  display: none;
+}
 
 /* 20210930: Make the useful buttons in rubric wider */
 #rubric_holder button.save_rubric_button.Button,
@@ -446,6 +455,44 @@ div.discussion-read-state,
 
 /******** End Discussion Board Styles ********/
 
+
+/******** Assignment Editor Styles ********/
+
+#graded_assignment_fields {
+  & .form-column-right {
+    width: calc(100vw - 600px);
+  }
+  & .input-append {
+    display: block;
+  }
+
+}
+
+#overrides-wrapper {
+  & div.overrides-column-right {
+    width: calc(100vw - 600px);  
+  }
+  & div.from,
+  & div.to {
+    flex: 1;
+  }
+  & input {
+    flex:1;
+  }
+
+}
+
+  div.Available-from-to > div {
+    flex: 1;
+  }
+  div.input-append {
+    display: block !important;
+    & input {
+      width: 200px;
+    }
+  }
+
+/******** End Assignment Editor Styles ********/
 
 
 /******** All Groups Allocation Styles ********/
