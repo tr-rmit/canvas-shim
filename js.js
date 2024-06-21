@@ -73,28 +73,15 @@ Trevor.`;
 
 
 /* Call when document is ready 
-   20230325: Putting all "need serious delay" styles in delayedLoad, KLUDGE: load event not working, using click event instead 
+   20230325: Putting all "need serious delay" styles in delayedLoad
+   20240621: 1 second delay after load seems to work
 */
-window.addEventListener('click', delayedLoad);
-
-/* 20230325: Not working / responding, kludge fix above
 window.addEventListener('load', function() {
-  console.log("Doc ready "+Date.now());
-  setTimeout(delayedLoad, 10000);
-}); */
-
+  setTimeout(delayedLoad, 1000);
+});
 
 /* 20230325: Some "resistant" (dynamic) styles and elements need a delayed "afterload" event to take effect, called when document is ready */
 function delayedLoad() {
-  
-  console.log("delayedLoad " + Date.now());
-  
-  /* 20230415: Script is generating multiple buttons, removing feature for now
-     Inserts "Student View" link into course navigation 
-  if (document.getElementById('section-tabs')) {
-    document.getElementById('section-tabs').innerHTML+='<li class="section"><a href="/courses/' + courseShell + '/student_view"  rel="nofollow" data-method="post">Student View</a></li>';
-  }
-  */
   
   /* Fix the f*cking headings! */
   let hSizes=["dummy","2rem","1.9rem","1.7rem","1.5rem","1.3rem","1.2rem"];
@@ -135,13 +122,21 @@ function delayedLoad() {
   
   if (isSpeedGrader) {
     
-    /* open all the feedback boxes in reverse order */
-    if (event.target.classList.contains("toggle_full_rubric")) {
+    /* Clicking "view rubric" button opens all the feedback boxes in reverse order,
+       puts focus in first by default.
+    */
+
+    $(".toggle_full_rubric.edit.btn").click(function(){
       $($(".react-rubric td:last-child button").get().reverse()).trigger("click");
-    }
-  
+    });
+
+
+
     /* make quiz comment boxes larger and usable */
+
     let head = $("#speedgrader_iframe").contents().find("head");
+
+    console.log(head);
     let css = '<style>div.quiz_comment {width: calc(100% - 90px); } div.quiz_comment textarea { width: calc(100% - 20px) !important; height: 100px !important; }</style>';
     $(head).append(css);
 
