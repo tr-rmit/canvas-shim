@@ -28,6 +28,16 @@ body {
   --tr-bg-color: #ffffff;
   --fbyHH-color: #000054;
   --fLzZc-smallWidth: 50vw;
+  height: initial;
+  min-height: initial;
+}
+
+/* Grade center has too many "min-height"ed elements creating scroll bars */
+body.grades,
+div#application,
+div#main,
+div#wrapper {
+  min-height: initial;
 }
 
 body a {
@@ -84,6 +94,7 @@ body:not(.full-width):not(.outcomes):not(.body--login-confirmation) div.ic-Layou
   max-width: 100% !important;
   height: auto;
 }
+
 
 /* 20200628: New styles needed to get #main children aligned */
 /* Makes Course Navigation Area (CNA) fixed position elements */
@@ -314,7 +325,7 @@ textarea#speed_grader_comment_textarea {
 }
 div.quiz_comment {
   display: block !important;
-  width:100%;
+  width:calc(100% - 90px);
 }
 /* 20231128: Remove gap between mark and speedgrader link in mark cell */
 div.Grid__GradeCell__EndContainer > span.Grid__GradeCell__EndText {
@@ -365,38 +376,73 @@ form#curve_grade_dialog + div {
 /******** End Grade Center Styles ********/
 
 
+/******** NEW Discussion Board Styles ********
 
-/******** All Discussion Board Styles ********/
+div[data-testid="discussion-root-entry-container"] > div {
+  
+  & div[data-testid="notHighlighted"] > div {
+    border: var(--ic-ltgr-color) solid thin;
+    background: #F3F9FF;
+    padding: 5px;
+    
 
-/* All Discussion Entries Container */
+  }
+  & div[data-testid="notHighlighted"] {
+    & div[data-testid="notHighlighted"]  {
+      background: #FFE;
+    }
+  }
+  
+  & span[class$="-view--block"] {
+    display: relative;
+    top: 20px;
+  }
+  
+  .ccss-tau4h7-view--inlineBlock-badge {
+    position: relative;
+    left: -17px;
+    top:-34px;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0 0 100% 0;
+  }
+}
+
+
+/******** END NEW Discussion Board Styles ********/
+
+
+/******** OLD Discussion Board Styles ********/
+
+/* All Discussion Entries Container 
 div#discussion_subentries {
   padding:0px;
   margin-top:20px;
 }
 
-/* All Discussion Entries List */
+/* All Discussion Entries List 
 div#discussion_subentries > ul.discussion-entries {
   margin:0px;
 }
 
-/* Single Conversation and Replies Block */
+/* Single Conversation and Replies Block 
 div#discussion_subentries > ul.discussion-entries > li.entry {
   padding:15px 0px 0px 0px;
   margin: 15px 0px 0px 0px;
   border-top: 4px dotted #dc291e;
 }
 
-/* Starting Conversation */
+/* Starting Conversation 
 div#discussion_subentries > ul.discussion-entries > li.entry > article.discussion_entry > div.entry-content {
   background-color:#F3F9FF;
 }
 
-/* Remove Border on Mid Nested Containers  */
+/* Remove Border on Mid Nested Containers  
 div#discussion_subentries li.entry {
   border-width: 0px;
 }
 
-/* Single Reply Block in a Conversation */
+/* Single Reply Block in a Conversation 
 div#discussion_subentries article.discussion_entry {
   border: 1px solid var(--ic-ltgr-color);
   border-left-width:10px;
@@ -404,27 +450,27 @@ div#discussion_subentries article.discussion_entry {
   margin: 0px 0px 1px 0px;
 }
 
-/* Dynamic Style Override: Content Inside Single Reply Block */
+/* Dynamic Style Override: Content Inside Single Reply Block 
 div#discussion_subentries article.discussion_entry div.entry-content {
   padding-left:20px !important;
 }
 
-/* Replies Recursive Indentation */
+/* Replies Recursive Indentation 
 div#discussion_subentries ul {
   margin: 0 0 0 10px;
 }
-/* Allow unread badge to grow and fit content */
+/* Allow unread badge to grow and fit content 
 span.ic-unread-badge {
   width: max-content;
 }
 
-/* Move Read / Unread Indicator into Reply Block */
+/* Move Read / Unread Indicator into Reply Block 
 a.discussion-read-state-btn {
   position: absolute;
   left:0px;
 }
 
-/* Make Read / Unread Indicator more visible */
+/* Make Read / Unread Indicator more visible 
 div.discussion-read-state,
 .read div.discussion-read-state {
   width: 30px;
@@ -435,7 +481,7 @@ div.discussion-read-state,
   border-color: var(--ic-ltgr-color);
 }
 
-/* Discussion titles crunch fix */
+/* Discussion titles crunch fix 
 .ic-discussion-content-container > span > span > span:first-child {
   flex: unset;
   width: calc(100% - 85px);
@@ -453,7 +499,7 @@ div.discussion-read-state,
   text-align: left;
 }
 
-/******** End Discussion Board Styles ********/
+/******** End OLD Discussion Board Styles ********/
 
 
 /******** Assignment Editor Styles ********/
