@@ -72,14 +72,6 @@ Trevor.`;
 } // window.dblclick
 
 
-/* Call when document is ready 
-   20230325: Putting all "need serious delay" styles in delayedLoad
-   20240621: 1 ... nope, 2 second delay after load seems to work
-*/
-window.addEventListener('load', function() {
-  setTimeout(delayedLoad, 2000);
-});
-
 /* 20230325: Some "resistant" (dynamic) styles and elements need a delayed "afterload" event to take effect, called when document is ready */
 function delayedLoad() {
   
@@ -130,14 +122,12 @@ function delayedLoad() {
       $($(".react-rubric td:last-child button").get().reverse()).trigger("click");
     });
 
-
-
     /* make quiz comment boxes larger and usable */
 
     let head = $("#speedgrader_iframe").contents().find("head");
 
     console.log(head);
-    let css = '<style>div.quiz_comment {width: calc(100% - 90px); } div.quiz_comment textarea { width: calc(100% - 20px) !important; height: 100px !important; }</style>';
+    let css = '<style class="canvas-shim">div.quiz_comment {width: calc(100% - 90px); } div.quiz_comment textarea { width: calc(100% - 20px) !important; height: 100px !important; }</style>';
     $(head).append(css);
 
   } // speedgrader
@@ -162,3 +152,15 @@ function delayedLoad() {
     document.getElementById('students_selectmenu-button').style.width = 'fit-content';
   
 }
+
+/* Call when document is ready 
+   20230325: Putting all "need serious delay" styles in delayedLoad
+   20240621: 1 ... nope, 2 second delay after load seems to work */
+window.addEventListener('load', function() {
+  setTimeout(delayedLoad, 2000);
+});
+
+/* 20240624: Primarily this is to enlarge tiny comment boxes in quiz rubric */
+$("#submissions_container").mouseenter(function(){
+  delayedLoad();
+});
