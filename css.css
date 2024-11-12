@@ -14,6 +14,7 @@ pre {
   font-size: inherit !important;
 }
 
+
 /* 20220621: RMIT brand red too bright, not everything uses RMIT brand navy, RMIT brand cyan has poor WAG2.0 */
 body {
   background-size: cover;
@@ -246,6 +247,14 @@ div.customFlash.ic-flash-warning.undefined,
 
 /******** All Grade Center & Rubric Styles ********/
 /* 20230219: Recent updates are conflicting with these styles, but many issues seem to have been fixed so much may be redundant */
+
+/* 20241112: Make rubric in assignment pages printer friendly */
+table.rubric_table {
+  page-break-before: always;
+}
+table.rubric_table tr {
+  page-break-inside: avoid; 
+}
 
 /* 20230219: Keeps dropdowns to a reasonable size and left aligned. */
 div#gradebook-toolbar,
