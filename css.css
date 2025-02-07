@@ -256,6 +256,11 @@ table.rubric_table tr {
   page-break-inside: avoid; 
 }
 
+/* 20250207: Grade center column headings offset by empty sibling spans, removing them */
+div.slick-header-column.assignment div.Gradebook__ColumnHeaderContent > div > span > span > span:nth-child(2n+1) {
+   display:none;
+}
+
 /* 20230219: Keeps dropdowns to a reasonable size and left aligned. */
 div#gradebook-toolbar,
 div#gradebook_app {
