@@ -20,6 +20,7 @@ body {
   background-size: cover;
   background-attachment: fixed;
   background-position: center; 
+  --orig-brand-red: #e61e2a;
   --ic-brand-global-nav-ic-icon-svg-fill--active: #A11;
   --ic-brand-global-nav-logo-bgd: #A11;
   --enRcg-dangerColor: #A11;
@@ -139,24 +140,25 @@ div#not_right_side {
 
 /* Makes Secondary Items Area (SIA) area a fixed position botttom right corner, expand on hover.*/
 #not_right_side #right-side-wrapper {
+  width: fit-content;
   box-sizing: border-box;
   position: fixed;
-  bottom:0px;
+  bottom:10px;
   z-index: 12 !important;
   overflow-y: hidden;
-  padding:2px;
-  left: calc(100vw - 30px);
+  padding:5px 10px;
+  right: -260px;
   text-align: left;
   transition: all 0.4s;
   background-color: white;
-  border-color: #51d2ff;
-  border-width: 4px 0px 0px 4px;
-  border-radius: 10px 0px 0px 0px;
+  border-color: var(--orig-brand-red);
+  border-width: 4px 0px 4px 4px;
+  border-radius: 10px 0px 0px 10px;
   border-style: ridge groove groove ridge;
 }
 #not_right_side #right-side-wrapper:hover {
   overflow-y: auto;
-  left: calc(100vw - 300px);
+  right: 0px;
   border-radius: 0px;
 }
 
