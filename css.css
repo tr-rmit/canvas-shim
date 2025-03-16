@@ -140,14 +140,14 @@ div#not_right_side {
 
 /* Makes Secondary Items Area (SIA) area a fixed position botttom right corner, expand on hover.*/
 #not_right_side #right-side-wrapper {
-  width: fit-content;
+  width: 500px;
   box-sizing: border-box;
   position: fixed;
   bottom:10px;
   z-index: 12 !important;
   overflow-y: hidden;
   padding:5px 10px;
-  right: -260px;
+  left: calc(100vw - 40px);
   text-align: left;
   transition: all 0.4s;
   background-color: white;
@@ -158,7 +158,7 @@ div#not_right_side {
 }
 #not_right_side #right-side-wrapper:hover {
   overflow-y: auto;
-  right: 0px;
+  left: calc(100vw - 500px);
   border-radius: 0px;
 }
 
