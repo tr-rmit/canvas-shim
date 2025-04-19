@@ -41,6 +41,10 @@ div#main,
 div#wrapper {
   min-height: initial;
 }
+/* 20250419: makes side panel wider, eg "quick marks"
+.transition--slide-right-entered {
+  width: 700px;
+}
 
 body a {
   color: var(--ic-link-color);
