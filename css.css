@@ -226,9 +226,11 @@ div#assignment_show {
   max-width: 600px;
 }
 
-/* Pages editor: Canvas sets tiny-mce editor height to just 400px at run time, !important override to a more practical height in all but the discussion threads */
+/* Pages editor: Canvas sets tiny-mce editor height to just 400px at run time, !important override to a more practical height in all but the discussion threads 
+  20250430: change to min-height as resize tool was broken
+*/
 :not(.reply-textarea) + div.tox-tinymce {
-  height: calc(100vh - 435px) !important;  
+  min-height: calc(100vh - 435px) !important;  
 }
 
 /* Please go away ...
