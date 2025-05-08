@@ -41,7 +41,7 @@ div#main,
 div#wrapper {
   min-height: initial;
 }
-/* 20250419: makes side panel wider, eg "quick marks"
+/* 20250419: makes side panel wider, eg "quick marks" */
 .transition--slide-right-entered {
   width: 700px;
 }
@@ -226,11 +226,9 @@ div#assignment_show {
   max-width: 600px;
 }
 
-/* Pages editor: Canvas sets tiny-mce editor height to just 400px at run time, !important override to a more practical height in all but the discussion threads 
-  20250430: change to min-height as resize tool was broken
-*/
+/* Pages editor: Canvas sets tiny-mce editor height to just 400px at run time, !important override to a more practical height in all but the discussion threads */
 :not(.reply-textarea) + div.tox-tinymce {
-  min-height: calc(100vh - 435px) !important;  
+  height: calc(100vh - 435px) !important;  
 }
 
 /* Please go away ...
