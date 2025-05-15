@@ -307,9 +307,10 @@ body.grades.ic-no-flex-layout div#full_width_container {
   background-color: #f99;
 }
 
-/* Make whole rubric selected/mastery cells cyan*/
-div.rating-tier.selected {
-  background-color:#0994;
+/* Make whole rubric selected/mastery cells cyan
+   20250515: Need specificity boost to remove lime green bg! */
+.rubric_container div.rating-tier.selected {
+  background-color:#0992;
 }
 
 /* Speed Grader students drop down list, make it longer and tighten up padding inside */
