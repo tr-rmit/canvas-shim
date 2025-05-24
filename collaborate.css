@@ -15,5 +15,10 @@
     top: 0px;
     width: initial;
   }
+}
 
+button#session-menu-open {
+  bottom: 9px;
+  right: 265px;
+  margin: 0px;
 }
