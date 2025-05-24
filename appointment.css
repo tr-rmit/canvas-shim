@@ -1,0 +1,32 @@
+/* Calendar / Appointments */
+#right-side-wrapper {
+  position: fixed;
+  bottom: 0px;
+  right:25px;
+}
+
+/* Print View */
+@media print {
+/* remove the chintz from the appointment list */
+  .EditPage__Header,
+  .css-1iqa4xu-gridCol,
+  .css-1vb47mj-gridCol,
+  .css-jkahvz-gridCol {
+    display: none;
+  }
+/* Remove left whitepace */
+  .css-1sbhkbz-gridCol fieldset {
+    display: block;
+  }
+/* Make appointments more table-like */
+  div.AppointmentGroupList__Appointment {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 0px;
+  }
+/* date has too much realestate! */
+  span.css-10sn4hh-gridCol {
+     flex: 0 0 200px;
+     border-right: 2px solid #ccc;
+  }
+}
