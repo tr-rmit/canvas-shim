@@ -43,31 +43,39 @@ switch (courseShell) {
 
 var hFixed=[];
 var activeSGPF = false;
+
+async function pasteClipboard(intro, destinationTextarea, outro) {
+ try {
+    const clipboardContents = await navigator.clipboard.readText();
+    destinationTextarea.innerHTML=intro + clipboardContents.toString() + outro;
+  } catch (error) {
+    destinationTextarea.value = `Clipboard read failed: ${error}`;
+  }
+}
+
+
 window.ondblclick = function(event) {
+  
   console.log("Trev: ondblclick");
   /* Prefill empty Speed Grader comment box */
-  if (isSpeedGrader) {
-    if (event.srcElement.id == 'speed_grader_comment_textarea' && event.srcElement.value.trim() == '') {
-      let studFName = document.getElementById('students_selectmenu-button').getElementsByClassName('ui-selectmenu-item-header')[0].innerHTML.trim().split(' ')[0];
-      event.srcElement.value = `Hi ${studFName},
-        
-Thank you for submitting your assessment. 
-Unfortunately there is an issue are some issues preventing us from marking your assignment:
-
-- No website is available on Coreteaching servers.
-- We are unable to access your GitHub, please register your non-sid username in the form provided in the Canvas assignment header area, and make sure that superfluffy kittenz is added as a collaborator.
-- Your GitHub repository is not private.
-- Your version on GitHub does not match your version on Coreteaching.
-- Files are not protected with .htaccess.
-- Your code does not pass validation, check your code in the nu validator.
-- "Insert your name here" is an instruction.
-- Your profile image is too large, it must be physically 200px x 200px (ie "on disk"), and it must be named avatar.png.
-
-Fix this up these things and send me an email when you are ready for re-grading. Sama and I are happy to catch up with you need assistance for a 1 on 1.
-
-Trevor.`;
-    } // comment box
+  let speedGraderCommentBox = document.getElementById("comment_rce_textarea_ifr").contentWindow.document.getElementById('tinymce');
+  if (speedGraderCommentBox) {
     
+    // speedGraderCommentBox.style.backgroundColor='#990000';
+    let studFName = '';
+    if (document.getElementById('students_selectmenu-button'))
+      studFName = document.getElementById('students_selectmenu-button').getElementsByClassName('ui-selectmenu-item-header')[0].innerHTML.trim().split(' ')[0];
+    else if(document.getElementById("student-carousel").getElementsByClassName('css-16xco70-view-link'))
+      studFName = document.getElementById("student-carousel").getElementsByClassName('css-16xco70-view-link')[0].innerHTML.trim().split(' ')[0]; 
+    let intro = '';
+    let outro = '<p>regards<br>-- Trevor</p>';
+    if (studFName == '') {
+      console.log('Could not find student name :-(');   
+    } else {
+      intro = '<p>Hi ' + studFName + ',</p>';
+    }
+    pasteClipboard(intro,speedGraderCommentBox,outro);
+
   } // speedgrader
 } // window.dblclick
 
