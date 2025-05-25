@@ -67,8 +67,8 @@ window.ondblclick = function(event) {
       studFName = document.getElementById('students_selectmenu-button').getElementsByClassName('ui-selectmenu-item-header')[0].innerHTML.trim().split(' ')[0];
     else if(document.getElementById("student-carousel").getElementsByClassName('css-16xco70-view-link'))
       studFName = document.getElementById("student-carousel").getElementsByClassName('css-16xco70-view-link')[0].innerHTML.trim().split(' ')[0]; 
-    let intro = '';
-    let outro = '<p>regards<br>-- Trevor</p>';
+    let intro = '<p>Thank you for submitting your assignment. Feedback, feedforward, and a marks breakdown can be found below.';
+    let outro = '<hr><p>regards<br>-- Trevor</p>';
     if (studFName == '') {
       console.log('Could not find student name :-(');   
     } else {
