@@ -57,26 +57,27 @@ async function pasteClipboard(intro, destinationTextarea, outro) {
 window.ondblclick = function(event) {
   
   console.log("Trev: ondblclick");
+  if(event.srcElement.role=="group") { // <-- a tinyMCE property
   /* Prefill empty Speed Grader comment box */
-  let speedGraderCommentBox = document.getElementById("comment_rce_textarea_ifr").contentWindow.document.getElementById('tinymce');
-  if (speedGraderCommentBox) {
-    
-    // speedGraderCommentBox.style.backgroundColor='#990000';
-    let studFName = '';
-    if (document.getElementById('students_selectmenu-button'))
-      studFName = document.getElementById('students_selectmenu-button').getElementsByClassName('ui-selectmenu-item-header')[0].innerHTML.trim().split(' ')[0];
-    else if(document.getElementById("student-carousel").getElementsByClassName('css-16xco70-view-link'))
-      studFName = document.getElementById("student-carousel").getElementsByClassName('css-16xco70-view-link')[0].innerHTML.trim().split(' ')[0]; 
-    let intro = '<p>Thank you for submitting your assignment. Feedback, feedforward, and a marks breakdown can be found below.';
-    let outro = '<hr><p>regards<br>-- Trevor</p>';
-    if (studFName == '') {
-      console.log('Could not find student name :-(');   
-    } else {
-      intro = '<p>Hi ' + studFName + ',</p>';
-    }
-    pasteClipboard(intro,speedGraderCommentBox,outro);
-
-  } // speedgrader
+    let speedGraderCommentBox = document.getElementById("comment_rce_textarea_ifr").contentWindow.document.getElementById('tinymce');
+    if (speedGraderCommentBox) {
+      
+      // speedGraderCommentBox.style.backgroundColor='#990000';
+      let studFName = '';
+      if (document.getElementById('students_selectmenu-button'))
+        studFName = document.getElementById('students_selectmenu-button').getElementsByClassName('ui-selectmenu-item-header')[0].innerHTML.trim().split(' ')[0];
+      else if(document.getElementById("student-carousel").getElementsByClassName('css-16xco70-view-link'))
+        studFName = document.getElementById("student-carousel").getElementsByClassName('css-16xco70-view-link')[0].innerHTML.trim().split(' ')[0]; 
+      let intro = '';
+      let outro = '<p>regards<br>-- Trevor</p>';
+      if (studFName == '') {
+        console.log('Could not find student name :-(');   
+      } else {
+        intro = '<p>Hi ' + studFName + ',</p>';
+      }
+      pasteClipboard(intro,speedGraderCommentBox,outro);
+    }// speedgrader
+  } // tineMCE Paste 
 } // window.dblclick
 
 
