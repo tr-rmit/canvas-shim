@@ -16,6 +16,6 @@ Open the extension, you will see two panes in a split window:
 
 ## Updates
 
-- Paste the CSS from collaborate.css into https://au.bbcollab.com/ to put conversation on left side
-- Paste the CSS from calendar.css into https://rmit.instructure.com/appointment_groups to put appointments into a printable table
+- Paste the CSS from collaborate.css into https://au.bbcollab.com/* to put conversation on left side
+- Paste the CSS from calendar.css into https://rmit.instructure.com/appointment_groups/* to put appointments into a printable table
   
